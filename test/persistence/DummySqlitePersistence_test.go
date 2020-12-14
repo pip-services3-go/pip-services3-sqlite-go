@@ -15,7 +15,7 @@ func TestDummySqlitePersistence(t *testing.T) {
 
 	sqliteDatabase := os.Getenv("SQLITE_DB")
 	if sqliteDatabase == "" {
-		sqliteDatabase = "./test.db"
+		sqliteDatabase = "../../data/test.db"
 	}
 
 	if sqliteDatabase == "" {

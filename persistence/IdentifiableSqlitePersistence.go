@@ -206,7 +206,7 @@ func (c *IdentifiableSqlitePersistence) Set(correlationId string, item interface
 
 	query := "INSERT INTO " + c.QuoteIdentifier(c.TableName) + " (" + columns + ")" +
 		" VALUES (" + params + ")" +
-		" ON CONFLICT (\"id\") DO UPDATE SET " + setParams //+ " RETURNING *"
+		" ON CONFLICT (\"id\") DO UPDATE SET " + setParams
 
 	qResult, qErr := c.Client.Query(query, values...)
 	if qErr != nil {
@@ -252,7 +252,7 @@ func (c *IdentifiableSqlitePersistence) Update(correlationId string, item interf
 	values = append(values, id)
 
 	query := "UPDATE " + c.QuoteIdentifier(c.TableName) +
-		" SET " + params + " WHERE \"id\"=$" + strconv.FormatInt((int64)(len(values)), 16) //+ " RETURNING *"
+		" SET " + params + " WHERE \"id\"=$" + strconv.FormatInt((int64)(len(values)), 16)
 
 	qResult, qErr := c.Client.Query(query, values...)
 	if qErr != nil {
@@ -296,7 +296,7 @@ func (c *IdentifiableSqlitePersistence) UpdatePartially(correlationId string, id
 	values = append(values, id)
 
 	query := "UPDATE " + c.QuoteIdentifier(c.TableName) +
-		" SET " + params + " WHERE \"id\"=$" + strconv.FormatInt((int64)(len(values)), 16) //+ " RETURNING *"
+		" SET " + params + " WHERE \"id\"=$" + strconv.FormatInt((int64)(len(values)), 16)
 
 	qResult, qErr := c.Client.Query(query, values...)
 
@@ -335,13 +335,14 @@ func (c *IdentifiableSqlitePersistence) DeleteById(correlationId string, id inte
 	if qErr != nil {
 		return nil, qErr
 	}
-	defer qResult.Close()
 	if !qResult.Next() {
+		defer qResult.Close()
 		return nil, qResult.Err()
 	}
 	result = c.ConvertToPublic(qResult)
+	qResult.Close()
 
-	query = "DELETE FROM " + c.QuoteIdentifier(c.TableName) + " WHERE \"id\"=$1" //RETURNING *
+	query = "DELETE FROM " + c.QuoteIdentifier(c.TableName) + " WHERE \"id\"=$1"
 	_, qErr2 := c.Client.Exec(query, id)
 	if qErr2 != nil {
 		return nil, qErr2

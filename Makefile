@@ -1,10 +1,10 @@
 .PHONY: all build clean install uninstall fmt simplify check run test
 
 install:
-	@go install main.go
+	@go mod tidy
 
 run: install
-	@go run main.go
+	@go run --tags sqlite_json main.go 
 
 test:
-	@go clean -testcache && go test -v ./test/...
+	@go clean -testcache && go test -v -tags sqlite_json ./test/...

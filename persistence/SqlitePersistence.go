@@ -789,7 +789,7 @@ func (c *SqlitePersistence) Create(correlationId string, item interface{}) (resu
 	if qResult.Err() != nil {
 		return nil, qResult.Err()
 	}
-	newitem := cmpersist.CloneObject(item)
+	newitem := cmpersist.CloneObjectForResult(item, c.Prototype)
 	id := cmpersist.GetObjectId(newitem)
 	c.Logger.Trace(correlationId, "Created in %s with id = %s", c.TableName, id)
 	return newitem, nil

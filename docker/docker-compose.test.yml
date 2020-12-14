@@ -6,22 +6,5 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.test
     image: ${IMAGE:-pipdevs/test}
-    depends_on:
-      - sqlite
     environment:
-      - POSTGRES_HOST=sqlite
-      - POSTGRES_PORT=5432
-      - POSTGRES_USER=sqlite
-      - POSTGRES_PASSWORD=sqlite
-      - POSTGRES_DB=test
-
-  sqlite:
-    image: sqlite:latest
-    # container_name: sqlite
-    environment:
-      POSTGRES_USER: sqlite
-      POSTGRES_PASSWORD: sqlite
-      POSTGRES_DB: test
-    # ports:
-    #   - "5432:5432"
-          
+      - SQLITE_DB="../../data/test.db"

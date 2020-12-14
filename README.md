@@ -3,21 +3,21 @@
 This component library is a part of the [Pip.Services](https://github.com/pip-services/pip-services) project.
 It contains the following SQLite components: 
  
- * [SqliteConnectionResolver](https://pip-services3-go.github.io/pip-services3-sqlite-go/classes/connect.sqliteconnectionresolver.html)
- * [SqliteConnection](https://pip-services3-go.github.io/pip-services3-sqlite-go/classes/persistence.sqliteconnection.html)
- * [SqlitePersistence](https://pip-services3-go.github.io/pip-services3-sqlite-go/classes/persistence.sqlitepersistence.html)
- * [IdentifiableSqlitePersistence](https://pip-services3-go.github.io/pip-services3-sqlite-go/classes/persistence.identifiablesqlitepersistence.html)
- * [IdentifiableJsonSqlitePersistence](https://pip-services3-go.github.io/pip-services3-sqlite-go/classes/persistence.identifiablejsonsqlitepersistence.html)
+ * [SqliteConnectionResolver]
+ * [SqliteConnection]
+ * [SqlitePersistence]
+ * [IdentifiableSqlitePersistence]
+ * [IdentifiableJsonSqlitePersistence]
 
 Quick Links:
 
-* [Downloads](https://github.com/pip-services3-go/pip-services3-sqlite-go/blob/master/docs/Downloads.md)
-* [API Reference](https://pip-services3-go.github.io/pip-services3-sqlite-go/globals.html)
-* [Building and Testing](https://github.com/pip-services3-go/pip-services3-sqlite-go/blob/master/docs/Development.md)
-* [Contributing](https://github.com/pip-services3-go/pip-services3-sqlite-go/blob/master/docs/Development.md#contrib)
+* [Downloads]
+* [API Reference]
+* [Building and Testing]
+* [Contributing]
 
 ## Acknowledgements
 
-The library is created and maintained by **Sergey Seroukhov**.
+The library is created and maintained by **Sergey Seroukhov** and **Levichev Dmitry**.
 
 The documentation is written by **Mark Makarychev**.

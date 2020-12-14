@@ -14,7 +14,7 @@ func TestSqliteConnection(t *testing.T) {
 
 	sqliteDatabase := os.Getenv("SQLITE_DB")
 	if sqliteDatabase == "" {
-		sqliteDatabase = "./data/test.db"
+		sqliteDatabase = "../../data/test.db"
 	}
 
 	if sqliteDatabase == "" {
