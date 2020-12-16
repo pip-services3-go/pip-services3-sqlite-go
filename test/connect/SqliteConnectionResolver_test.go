@@ -28,7 +28,7 @@ func TestSqliteConnectionResolverConnectionConfigWithParams(t *testing.T) {
 func TestSqliteConnectionResolverConnectionConfigWithURI(t *testing.T) {
 
 	dbConfig := cconf.NewConfigParamsFromTuples(
-		"connection.uri", "file://../../data/test.db",
+		"connection.uri", "file://../../data/test.db?_mutex=full",
 	)
 
 	resolver := pcon.NewSqliteConnectionResolver()
@@ -38,6 +38,6 @@ func TestSqliteConnectionResolverConnectionConfigWithURI(t *testing.T) {
 	assert.Nil(t, err)
 
 	assert.NotNil(t, config)
-	assert.Equal(t, "../../data/test.db", config["database"])
+	assert.Equal(t, "../../data/test.db?_mutex=full", config["database"])
 
 }
