@@ -15,6 +15,7 @@ Quick Links:
 * [API Reference]
 * [Building and Testing]
 * [Contributing]
+* [SQLite driver repo](https://github.com/mattn/go-sqlite3)
 
 ## Acknowledgements
 
