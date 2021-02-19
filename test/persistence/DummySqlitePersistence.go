@@ -17,10 +17,16 @@ func NewDummySqlitePersistence() *DummySqlitePersistence {
 	c := &DummySqlitePersistence{
 		IdentifiableSqlitePersistence: *ppersist.NewIdentifiableSqlitePersistence(proto, "dummies"),
 	}
-	// Row name must be in double quotes for properly case!!!
-	c.AutoCreateObject("CREATE TABLE \"dummies\" (\"id\" VARCHAR(32) PRIMARY KEY, \"key\" VARCHAR(50), \"content\" TEXT)")
-	c.EnsureIndex("dummies_key", map[string]string{"key": "1"}, map[string]string{"unique": "true"})
+	c.DefineSchema = c.PerformDefineSchema
 	return c
+}
+
+func (c *DummySqlitePersistence) PerformDefineSchema() {
+	c.ClearSchema()
+	// Row name must be in double quotes for properly case!!!
+	c.EnsureSchema("CREATE TABLE \"dummies\" (\"id\" VARCHAR(32) PRIMARY KEY, \"key\" VARCHAR(50), \"content\" TEXT)")
+	c.EnsureIndex("dummies_key", map[string]string{"key": "1"}, map[string]string{"unique": "true"})
+
 }
 
 func (c *DummySqlitePersistence) Create(correlationId string, item tf.Dummy) (result tf.Dummy, err error) {

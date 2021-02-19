@@ -88,15 +88,18 @@ accessing c._db or c._collection properties.
 type SqlitePersistence struct {
 	defaultConfig *cconf.ConfigParams
 
-	config          *cconf.ConfigParams
-	references      cref.IReferences
-	opened          bool
-	localConnection bool
-	autoObjects     []string
+	config           *cconf.ConfigParams
+	references       cref.IReferences
+	opened           bool
+	localConnection  bool
+	schemaStatements []string
 
 	ConvertFromPublic        func(interface{}) interface{}
 	ConvertToPublic          func(*sql.Rows) interface{}
 	ConvertFromPublicPartial func(interface{}) interface{}
+	DefineSchema             func()
+	EnsureSchema             func(string)
+	ClearSchema              func()
 
 	//The dependency resolver.
 	DependencyResolver *cref.DependencyResolver
@@ -122,15 +125,18 @@ func NewSqlitePersistence(proto reflect.Type, tableName string) *SqlitePersisten
 			"collection", nil,
 			"dependencies.connection", "*:connection:sqlite:*:1.0",
 		),
-		autoObjects: make([]string, 0),
-		Logger:      clog.NewCompositeLogger(),
-		MaxPageSize: 100,
-		Prototype:   proto,
+		schemaStatements: make([]string, 0),
+		Logger:           clog.NewCompositeLogger(),
+		MaxPageSize:      100,
+		Prototype:        proto,
 	}
 
 	c.ConvertFromPublic = c.PerformConvertFromPublic
 	c.ConvertToPublic = c.PerformConvertToPublic
 	c.ConvertFromPublicPartial = c.PerformConvertFromPublic
+
+	c.ClearSchema = c.PerformClearSchema
+	c.EnsureSchema = c.PerformEnsureSchema
 
 	c.DependencyResolver = cref.NewDependencyResolver()
 	c.DependencyResolver.Configure(c.defaultConfig)
@@ -222,13 +228,18 @@ func (c *SqlitePersistence) EnsureIndex(name string, keys map[string]string, opt
 
 	builder += "(" + fields + ")"
 
-	c.AutoCreateObject(builder)
+	c.EnsureSchema(builder)
 }
 
-// Adds index definition to create it on opening
-// - dmlStatement DML statement to autocreate database object
-func (c *SqlitePersistence) AutoCreateObject(dmlStatement string) {
-	c.autoObjects = append(c.autoObjects, dmlStatement)
+// Adds a statement to schema definition
+//   - schemaStatement a statement to be added to the schema
+func (c *SqlitePersistence) PerformEnsureSchema(schemaStatement string) {
+	c.schemaStatements = append(c.schemaStatements, schemaStatement)
+}
+
+// Clears all auto-created objects
+func (c *SqlitePersistence) PerformClearSchema() {
+	c.schemaStatements = []string{}
 }
 
 // Converts object value from internal to func (c * SqlitePersistence) format.
@@ -326,8 +337,13 @@ func (c *SqlitePersistence) Open(correlationId string) (err error) {
 	c.Client = c.Connection.GetConnection()
 	c.DatabaseName = c.Connection.GetDatabaseName()
 
+	// Define database schema
+	if c.DefineSchema != nil {
+		c.DefineSchema()
+	}
+
 	// Recreate objects
-	err = c.AutoCreateObjects(correlationId)
+	err = c.CreateSchema(correlationId)
 	if err != nil {
 		c.Client = nil
 		err = cerr.NewConnectionError(correlationId, "CONNECT_FAILED", "Connection to sqlite failed").WithCause(err)
@@ -383,8 +399,8 @@ func (c *SqlitePersistence) Clear(correlationId string) error {
 	return err
 }
 
-func (c *SqlitePersistence) AutoCreateObjects(correlationId string) (err error) {
-	if c.autoObjects == nil || len(c.autoObjects) == 0 {
+func (c *SqlitePersistence) CreateSchema(correlationId string) (err error) {
+	if c.schemaStatements == nil || len(c.schemaStatements) == 0 {
 		return nil
 	}
 
@@ -400,7 +416,7 @@ func (c *SqlitePersistence) AutoCreateObjects(correlationId string) (err error) 
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		for _, dml := range c.autoObjects {
+		for _, dml := range c.schemaStatements {
 			_, err := c.Client.Exec(dml)
 			if err != nil {
 				c.Logger.Error(correlationId, err, "Failed to autocreate database object")

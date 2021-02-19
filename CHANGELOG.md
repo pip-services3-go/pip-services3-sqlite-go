@@ -1,5 +1,16 @@
 # PostgreSQL components for Pip.Services in Golang Changelog
 
+## <a name="1.1.0"></a> 1.1.0 (2021-02-19) 
+
+### Features
+* Renamed autoCreateObject to ensureSchema
+* Added defineSchema method that shall be overriden in child classes
+* Added clearSchema method
+
+### Breaking changes
+* Method autoCreateObject is deprecated and shall be renamed to ensureSchema
+
+
 ## <a name="1.0.0"></a> 1.0.0 (2020-12-16) 
 
 ### Features
