@@ -196,12 +196,10 @@ func (c *IdentifiableSqlitePersistence) Set(correlationId string, item interface
 	var newItem interface{}
 	newItem = cmpersist.CloneObject(item)
 	cmpersist.GenerateObjectId(&newItem)
-
 	row := c.ConvertFromPublic(item)
-	columns := c.GenerateColumns(row)
 	params := c.GenerateParameters(row)
-	setParams, col := c.GenerateSetParameters(row)
-	values := c.GenerateValues(col, row)
+	setParams, columns := c.GenerateSetParameters(row)
+	values := c.GenerateValues(columns, row)
 	id := cmpersist.GetObjectId(newItem)
 
 	query := "INSERT INTO " + c.QuoteIdentifier(c.TableName) + " (" + columns + ")" +

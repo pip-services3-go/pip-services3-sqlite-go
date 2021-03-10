@@ -106,6 +106,15 @@ func (c *DummyJsonSqlitePersistence) Update(correlationId string, item tf.Dummy)
 	return result, err
 }
 
+func (c *DummyJsonSqlitePersistence) Set(correlationId string, item tf.Dummy) (result tf.Dummy, err error) {
+	value, err := c.IdentifiableSqlitePersistence.Set(correlationId, item)
+	if value != nil {
+		val, _ := value.(tf.Dummy)
+		result = val
+	}
+	return result, err
+}
+
 func (c *DummyJsonSqlitePersistence) UpdatePartially(correlationId string, id string, data *cdata.AnyValueMap) (item tf.Dummy, err error) {
 	// In json persistence this method must call from IdentifiableJsonSqlitePersistence
 	result, err := c.IdentifiableJsonSqlitePersistence.UpdatePartially(correlationId, id, data)

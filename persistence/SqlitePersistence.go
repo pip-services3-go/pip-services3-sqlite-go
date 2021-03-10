@@ -491,19 +491,19 @@ func (c *SqlitePersistence) GenerateSetParameters(values interface{}) (params st
 	if items == nil {
 		return "", ""
 	}
-	result := strings.Builder{}
-	col := strings.Builder{}
+	setParamsBuf := strings.Builder{}
+	columnBuf := strings.Builder{}
 	index := 1
 	for column := range items {
-		if result.String() != "" {
-			result.WriteString(",")
-			col.WriteString(",")
+		if setParamsBuf.String() != "" {
+			setParamsBuf.WriteString(",")
+			columnBuf.WriteString(",")
 		}
-		result.WriteString(c.QuoteIdentifier(column) + "=$" + strconv.FormatInt((int64)(index), 16))
-		col.WriteString(c.QuoteIdentifier(column))
+		setParamsBuf.WriteString(c.QuoteIdentifier(column) + "=$" + strconv.FormatInt((int64)(index), 16))
+		columnBuf.WriteString(c.QuoteIdentifier(column))
 		index++
 	}
-	return result.String(), col.String()
+	return setParamsBuf.String(), columnBuf.String()
 }
 
 // Generates a list of column parameters

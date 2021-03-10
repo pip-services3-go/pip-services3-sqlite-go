@@ -69,6 +69,16 @@ func (c *DummyMapSqlitePersistence) Update(correlationId string, item map[string
 	return result, err
 }
 
+func (c *DummyMapSqlitePersistence) Set(correlationId string, item map[string]interface{}) (result map[string]interface{}, err error) {
+	value, err := c.IdentifiableSqlitePersistence.Set(correlationId, item)
+
+	if value != nil {
+		val, _ := value.(map[string]interface{})
+		result = val
+	}
+	return result, err
+}
+
 func (c *DummyMapSqlitePersistence) UpdatePartially(correlationId string, id string, data *cdata.AnyValueMap) (item map[string]interface{}, err error) {
 	result, err := c.IdentifiableSqlitePersistence.UpdatePartially(correlationId, id, data)
 
