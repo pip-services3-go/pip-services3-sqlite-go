@@ -18,7 +18,15 @@ import (
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	clog "github.com/pip-services3-go/pip-services3-components-go/log"
 	cmpersist "github.com/pip-services3-go/pip-services3-data-go/persistence"
+	conn "github.com/pip-services3-go/pip-services3-sqlite-go/connect"
 )
+
+type ISqlitePersistenceOverrides interface {
+	DefineSchema()
+	ConvertFromPublic(item interface{}) interface{}
+	ConvertToPublic(item *sql.Rows) interface{}
+	ConvertFromPublicPartial(item interface{}) interface{}
+}
 
 /*
 Abstract persistence component that stores data in PostgreSQL using plain driver.
@@ -86,27 +94,22 @@ accessing c._db or c._collection properties.
 */
 
 type SqlitePersistence struct {
-	defaultConfig *cconf.ConfigParams
+	Overrides ISqlitePersistenceOverrides
+	Prototype reflect.Type
 
+	defaultConfig    *cconf.ConfigParams
 	config           *cconf.ConfigParams
 	references       cref.IReferences
 	opened           bool
 	localConnection  bool
 	schemaStatements []string
 
-	ConvertFromPublic        func(interface{}) interface{}
-	ConvertToPublic          func(*sql.Rows) interface{}
-	ConvertFromPublicPartial func(interface{}) interface{}
-	DefineSchema             func()
-	EnsureSchema             func(string)
-	ClearSchema              func()
-
 	//The dependency resolver.
 	DependencyResolver *cref.DependencyResolver
 	//The logger.
 	Logger *clog.CompositeLogger
 	//The PostgreSQL connection component.
-	Connection *SqliteConnection
+	Connection *conn.SqliteConnection
 	//The PostgreSQL connection pool object.
 	Client *sql.DB
 	//The PostgreSQL database name.
@@ -114,13 +117,15 @@ type SqlitePersistence struct {
 	//The PostgreSQL table object.
 	TableName   string
 	MaxPageSize int
-	Prototype   reflect.Type
 }
 
 // Creates a new instance of the persistence component.
+// - overrides a references to child class that overrides virtual methods
 // - tableName    (optional) a table name.
-func NewSqlitePersistence(proto reflect.Type, tableName string) *SqlitePersistence {
+func InheritSqlitePersistence(overrides ISqlitePersistenceOverrides, proto reflect.Type, tableName string) *SqlitePersistence {
 	c := &SqlitePersistence{
+		Overrides: overrides,
+		Prototype: proto,
 		defaultConfig: cconf.NewConfigParamsFromTuples(
 			"collection", nil,
 			"dependencies.connection", "*:connection:sqlite:*:1.0",
@@ -128,19 +133,12 @@ func NewSqlitePersistence(proto reflect.Type, tableName string) *SqlitePersisten
 		schemaStatements: make([]string, 0),
 		Logger:           clog.NewCompositeLogger(),
 		MaxPageSize:      100,
-		Prototype:        proto,
+		TableName:        tableName,
 	}
-
-	c.ConvertFromPublic = c.PerformConvertFromPublic
-	c.ConvertToPublic = c.PerformConvertToPublic
-	c.ConvertFromPublicPartial = c.PerformConvertFromPublic
-
-	c.ClearSchema = c.PerformClearSchema
-	c.EnsureSchema = c.PerformEnsureSchema
 
 	c.DependencyResolver = cref.NewDependencyResolver()
 	c.DependencyResolver.Configure(c.defaultConfig)
-	c.TableName = tableName
+
 	return c
 }
 
@@ -166,7 +164,7 @@ func (c *SqlitePersistence) SetReferences(references cref.IReferences) {
 	// Get connection
 	c.DependencyResolver.SetReferences(references)
 	result := c.DependencyResolver.GetOneOptional("connection")
-	if dep, ok := result.(*SqliteConnection); ok {
+	if dep, ok := result.(*conn.SqliteConnection); ok {
 		c.Connection = dep
 	}
 	// Or create a local one
@@ -183,8 +181,8 @@ func (c *SqlitePersistence) UnsetReferences() {
 	c.Connection = nil
 }
 
-func (c *SqlitePersistence) createConnection() *SqliteConnection {
-	connection := NewSqliteConnection()
+func (c *SqlitePersistence) createConnection() *conn.SqliteConnection {
+	connection := conn.NewSqliteConnection()
 	if c.config != nil {
 		connection.Configure(c.config)
 	}
@@ -231,21 +229,26 @@ func (c *SqlitePersistence) EnsureIndex(name string, keys map[string]string, opt
 	c.EnsureSchema(builder)
 }
 
+// Defines database schema for the persistence
+func (c *SqlitePersistence) DefineSchema() {
+	// Override in child classes
+}
+
 // Adds a statement to schema definition
 //   - schemaStatement a statement to be added to the schema
-func (c *SqlitePersistence) PerformEnsureSchema(schemaStatement string) {
+func (c *SqlitePersistence) EnsureSchema(schemaStatement string) {
 	c.schemaStatements = append(c.schemaStatements, schemaStatement)
 }
 
 // Clears all auto-created objects
-func (c *SqlitePersistence) PerformClearSchema() {
+func (c *SqlitePersistence) ClearSchema() {
 	c.schemaStatements = []string{}
 }
 
 // Converts object value from internal to func (c * SqlitePersistence) format.
 // - value     an object in internal format to convert.
 // Returns converted object in func (c * SqlitePersistence) format.
-func (c *SqlitePersistence) PerformConvertToPublic(rows *sql.Rows) interface{} {
+func (c *SqlitePersistence) ConvertToPublic(rows *sql.Rows) interface{} {
 
 	columns, err := rows.Columns()
 	if err != nil || columns == nil || len(columns) == 0 {
@@ -271,21 +274,20 @@ func (c *SqlitePersistence) PerformConvertToPublic(rows *sql.Rows) interface{} {
 	jsonBuf, _ := json.Marshal(buf)
 	json.Unmarshal(jsonBuf, docPointer.Interface())
 	return c.DereferenceObject(docPointer)
-
 }
 
 // Convert object value from func (c * SqlitePersistence) to internal format.
 // - value     an object in func (c * SqlitePersistence) format to convert.
 // Returns converted object in internal format.
-func (c *SqlitePersistence) PerformConvertFromPublic(value interface{}) interface{} {
+func (c *SqlitePersistence) ConvertFromPublic(value interface{}) interface{} {
 	return value
 }
 
 // Converts the given object from the public partial format.
 // - value     the object to convert from the public partial format.
 // Returns the initial object.
-func (c *SqlitePersistence) PerformConvertFromPublicPartial(value interface{}) interface{} {
-	return c.ConvertFromPublic(value)
+func (c *SqlitePersistence) ConvertFromPublicPartial(value interface{}) interface{} {
+	return c.Overrides.ConvertFromPublic(value)
 }
 
 func (c *SqlitePersistence) QuoteIdentifier(value string) string {
@@ -338,9 +340,7 @@ func (c *SqlitePersistence) Open(correlationId string) (err error) {
 	c.DatabaseName = c.Connection.GetDatabaseName()
 
 	// Define database schema
-	if c.DefineSchema != nil {
-		c.DefineSchema()
-	}
+	c.Overrides.DefineSchema()
 
 	// Recreate objects
 	err = c.CreateSchema(correlationId)
@@ -598,7 +598,7 @@ func (c *SqlitePersistence) GetPageByFilter(correlationId string, filter interfa
 
 	items := make([]interface{}, 0, 0)
 	for qResult.Next() {
-		item := c.ConvertToPublic(qResult)
+		item := c.Overrides.ConvertToPublic(qResult)
 		items = append(items, item)
 	}
 
@@ -711,7 +711,7 @@ func (c *SqlitePersistence) GetListByFilter(correlationId string, filter interfa
 	defer qResult.Close()
 	items = make([]interface{}, 0, 1)
 	for qResult.Next() {
-		item := c.ConvertToPublic(qResult)
+		item := c.Overrides.ConvertToPublic(qResult)
 		items = append(items, item)
 	}
 
@@ -775,7 +775,7 @@ func (c *SqlitePersistence) GetOneRandom(correlationId string, filter interface{
 		return nil, qResult2.Err()
 	}
 
-	item = c.ConvertToPublic(qResult2)
+	item = c.Overrides.ConvertToPublic(qResult2)
 	c.Logger.Trace(correlationId, "Retrieved random item from %s", c.TableName)
 	return item, nil
 
@@ -791,7 +791,7 @@ func (c *SqlitePersistence) Create(correlationId string, item interface{}) (resu
 		return nil, nil
 	}
 
-	row := c.ConvertFromPublic(item)
+	row := c.Overrides.ConvertFromPublic(item)
 	columns := c.GenerateColumns(row)
 	params := c.GenerateParameters(row)
 	values := c.GenerateValues(columns, row)

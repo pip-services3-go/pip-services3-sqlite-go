@@ -4,20 +4,21 @@ import (
 	"reflect"
 
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
-	ppersist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
+	persist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
 	tf "github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures"
 )
 
 // extends IdentifiableSqlitePersistence<Dummy, string>
 // implements IDummyPersistence {
 type DummyRefSqlitePersistence struct {
-	ppersist.IdentifiableSqlitePersistence
+	persist.IdentifiableSqlitePersistence
 }
 
 func NewDummyRefSqlitePersistence() *DummyRefSqlitePersistence {
-
 	proto := reflect.TypeOf(&tf.Dummy{})
-	return &DummyRefSqlitePersistence{*ppersist.NewIdentifiableSqlitePersistence(proto, "dummies")}
+	c := &DummyRefSqlitePersistence{}
+	c.IdentifiableSqlitePersistence = *persist.InheritIdentifiableSqlitePersistence(c, proto, "dummies")
+	return c
 }
 
 func (c *DummyRefSqlitePersistence) Create(correlationId string, item *tf.Dummy) (result *tf.Dummy, err error) {

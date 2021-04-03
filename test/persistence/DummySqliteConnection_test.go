@@ -6,7 +6,7 @@ import (
 
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
-	ppersist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
+	conn "github.com/pip-services3-go/pip-services3-sqlite-go/connect"
 	tf "github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures"
 	"github.com/stretchr/testify/assert"
 )
@@ -15,7 +15,7 @@ func TestDummySqliteConnection(t *testing.T) {
 
 	var persistence *DummySqlitePersistence
 	var fixture tf.DummyPersistenceFixture
-	var connection *ppersist.SqliteConnection
+	var connection *conn.SqliteConnection
 
 	sqliteDatabase := os.Getenv("SQLITE_DB")
 	if sqliteDatabase == "" {
@@ -30,7 +30,7 @@ func TestDummySqliteConnection(t *testing.T) {
 		"connection.database", sqliteDatabase,
 	)
 
-	connection = ppersist.NewSqliteConnection()
+	connection = conn.NewSqliteConnection()
 	connection.Configure(dbConfig)
 
 	persistence = NewDummySqlitePersistence()

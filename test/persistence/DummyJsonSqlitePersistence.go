@@ -4,27 +4,29 @@ import (
 	"reflect"
 
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
-	ppersist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
+	persist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
 	tf "github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures"
 )
 
 type DummyJsonSqlitePersistence struct {
-	ppersist.IdentifiableJsonSqlitePersistence
+	persist.IdentifiableJsonSqlitePersistence
 }
 
 func NewDummyJsonSqlitePersistence() *DummyJsonSqlitePersistence {
 	proto := reflect.TypeOf(tf.Dummy{})
-	c := &DummyJsonSqlitePersistence{
-		IdentifiableJsonSqlitePersistence: *ppersist.NewIdentifiableJsonSqlitePersistence(proto, "dummies_json"),
-	}
+	c := &DummyJsonSqlitePersistence{}
+	c.IdentifiableJsonSqlitePersistence = *persist.InheritIdentifiableJsonSqlitePersistence(c, proto, "dummies_json")
 
-	c.EnsureTable("", "")
-	c.EnsureIndex("dummies_json_key", map[string]string{"(data->'key')": "1"}, map[string]string{"unique": "true"})
 	return c
 }
 
-func (c *DummyJsonSqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.DummyPage, err error) {
+func (c *DummyJsonSqlitePersistence) DefineSchema() {
+	c.ClearSchema()
+	c.EnsureTable("", "")
+	c.EnsureIndex(c.TableName+"_json_key", map[string]string{"(data->'key')": "1"}, map[string]string{"unique": "true"})
+}
 
+func (c *DummyJsonSqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.DummyPage, err error) {
 	if &filter == nil {
 		filter = cdata.NewEmptyFilterParams()
 	}
@@ -49,7 +51,6 @@ func (c *DummyJsonSqlitePersistence) GetPageByFilter(correlationId string, filte
 }
 
 func (c *DummyJsonSqlitePersistence) GetCountByFilter(correlationId string, filter *cdata.FilterParams) (count int64, err error) {
-
 	if &filter == nil {
 		filter = cdata.NewEmptyFilterParams()
 	}

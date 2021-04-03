@@ -1,16 +1,16 @@
-package test
+package test_connect
 
 import (
 	"os"
 	"testing"
 
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
-	ppersist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
+	conn "github.com/pip-services3-go/pip-services3-sqlite-go/connect"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestSqliteConnection(t *testing.T) {
-	var connection *ppersist.SqliteConnection
+	var connection *conn.SqliteConnection
 
 	sqliteDatabase := os.Getenv("SQLITE_DB")
 	if sqliteDatabase == "" {
@@ -25,7 +25,7 @@ func TestSqliteConnection(t *testing.T) {
 		"connection.database", sqliteDatabase,
 	)
 
-	connection = ppersist.NewSqliteConnection()
+	connection = conn.NewSqliteConnection()
 	connection.Configure(dbConfig)
 	err := connection.Open("")
 	assert.Nil(t, err)

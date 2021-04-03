@@ -98,15 +98,15 @@ type IdentifiableSqlitePersistence struct {
 }
 
 //    Creates a new instance of the persistence component.
-//    - collection    (optional) a collection name.
-func NewIdentifiableSqlitePersistence(proto reflect.Type, tableName string) *IdentifiableSqlitePersistence {
-	c := &IdentifiableSqlitePersistence{
-		SqlitePersistence: NewSqlitePersistence(proto, tableName),
-	}
-
+// - overrides a references to child class that overrides virtual methods
+// - tableName    (optional) a table name.
+func InheritIdentifiableSqlitePersistence(overrides ISqlitePersistenceOverrides, proto reflect.Type, tableName string) *IdentifiableSqlitePersistence {
 	if tableName == "" {
 		panic("Table name could not be empty")
 	}
+
+	c := &IdentifiableSqlitePersistence{}
+	c.SqlitePersistence = InheritSqlitePersistence(overrides, proto, tableName)
 	return c
 }
 
@@ -127,7 +127,7 @@ func (c *IdentifiableSqlitePersistence) GetListByIds(correlationId string, ids [
 	items = make([]interface{}, 0, 0)
 	for qResult.Next() {
 
-		item := c.ConvertToPublic(qResult)
+		item := c.Overrides.ConvertToPublic(qResult)
 		items = append(items, item)
 	}
 
@@ -155,7 +155,7 @@ func (c *IdentifiableSqlitePersistence) GetOneById(correlationId string, id inte
 		return nil, qResult.Err()
 	}
 
-	result := c.ConvertToPublic(qResult)
+	result := c.Overrides.ConvertToPublic(qResult)
 	if result == nil {
 		c.Logger.Trace(correlationId, "Nothing found from %s with id = %s", c.TableName, id)
 	} else {
@@ -196,7 +196,7 @@ func (c *IdentifiableSqlitePersistence) Set(correlationId string, item interface
 	var newItem interface{}
 	newItem = cmpersist.CloneObject(item)
 	cmpersist.GenerateObjectId(&newItem)
-	row := c.ConvertFromPublic(item)
+	row := c.Overrides.ConvertFromPublic(item)
 	params := c.GenerateParameters(row)
 	setParams, columns := c.GenerateSetParameters(row)
 	values := c.GenerateValues(columns, row)
@@ -226,7 +226,7 @@ func (c *IdentifiableSqlitePersistence) Set(correlationId string, item interface
 		return nil, qResult2.Err()
 	}
 
-	result = c.ConvertToPublic(qResult2)
+	result = c.Overrides.ConvertToPublic(qResult2)
 	c.Logger.Trace(correlationId, "Set in %s with id = %s", c.TableName, id)
 	return result, nil
 }
@@ -244,7 +244,7 @@ func (c *IdentifiableSqlitePersistence) Update(correlationId string, item interf
 	newItem = cmpersist.CloneObject(item)
 	id := cmpersist.GetObjectId(newItem)
 
-	row := c.ConvertFromPublic(newItem)
+	row := c.Overrides.ConvertFromPublic(newItem)
 	params, col := c.GenerateSetParameters(row)
 	values := c.GenerateValues(col, row)
 	values = append(values, id)
@@ -271,7 +271,7 @@ func (c *IdentifiableSqlitePersistence) Update(correlationId string, item interf
 		return nil, qResult2.Err()
 	}
 
-	result = c.ConvertToPublic(qResult2)
+	result = c.Overrides.ConvertToPublic(qResult2)
 	c.Logger.Trace(correlationId, "Updated in %s with id = %s", c.TableName, id)
 	return result, nil
 
@@ -288,7 +288,7 @@ func (c *IdentifiableSqlitePersistence) UpdatePartially(correlationId string, id
 		return nil, nil
 	}
 
-	row := c.ConvertFromPublicPartial(data.Value())
+	row := c.Overrides.ConvertFromPublicPartial(data.Value())
 	params, col := c.GenerateSetParameters(row)
 	values := c.GenerateValues(col, row)
 	values = append(values, id)
@@ -316,7 +316,7 @@ func (c *IdentifiableSqlitePersistence) UpdatePartially(correlationId string, id
 		return nil, qResult2.Err()
 	}
 
-	result = c.ConvertToPublic(qResult2)
+	result = c.Overrides.ConvertToPublic(qResult2)
 	c.Logger.Trace(correlationId, "Updated partially in %s with id = %s", c.TableName, id)
 	return result, nil
 
@@ -337,7 +337,7 @@ func (c *IdentifiableSqlitePersistence) DeleteById(correlationId string, id inte
 		defer qResult.Close()
 		return nil, qResult.Err()
 	}
-	result = c.ConvertToPublic(qResult)
+	result = c.Overrides.ConvertToPublic(qResult)
 	qResult.Close()
 
 	query = "DELETE FROM " + c.QuoteIdentifier(c.TableName) + " WHERE \"id\"=$1"

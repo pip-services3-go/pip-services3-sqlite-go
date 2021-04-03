@@ -104,14 +104,11 @@ type IdentifiableJsonSqlitePersistence struct {
 }
 
 // Creates a new instance of the persistence component.
-// - collection    (optional) a collection name.
-func NewIdentifiableJsonSqlitePersistence(proto reflect.Type, tableName string) *IdentifiableJsonSqlitePersistence {
-	c := &IdentifiableJsonSqlitePersistence{
-		IdentifiableSqlitePersistence: *NewIdentifiableSqlitePersistence(proto, tableName),
-	}
-	c.ConvertFromPublic = c.PerformConvertFromPublic
-	c.ConvertToPublic = c.PerformConvertToPublic
-	c.ConvertFromPublicPartial = c.PerformConvertFromPublic
+// - overrides a references to child class that overrides virtual methods
+// - tableName    (optional) a table name.
+func InheritIdentifiableJsonSqlitePersistence(overrides ISqlitePersistenceOverrides, proto reflect.Type, tableName string) *IdentifiableJsonSqlitePersistence {
+	c := &IdentifiableJsonSqlitePersistence{}
+	c.IdentifiableSqlitePersistence = *InheritIdentifiableSqlitePersistence(overrides, proto, tableName)
 	return c
 }
 
@@ -135,7 +132,7 @@ func (c *IdentifiableJsonSqlitePersistence) EnsureTable(idType string, dataType 
 // Converts object value from internal to public format.
 // - value     an object in internal format to convert.
 // Returns converted object in public format.
-func (c *IdentifiableJsonSqlitePersistence) PerformConvertToPublic(rows *sql.Rows) interface{} {
+func (c *IdentifiableJsonSqlitePersistence) ConvertToPublic(rows *sql.Rows) interface{} {
 
 	columns, err := rows.Columns()
 	if err != nil || columns == nil || len(columns) == 0 {
@@ -176,7 +173,7 @@ func (c *IdentifiableJsonSqlitePersistence) PerformConvertToPublic(rows *sql.Row
 //  Convert object value from public to internal format.
 //  - value     an object in public format to convert.
 //  Returns converted object in internal format.
-func (c *IdentifiableJsonSqlitePersistence) PerformConvertFromPublic(value interface{}) interface{} {
+func (c *IdentifiableJsonSqlitePersistence) ConvertFromPublic(value interface{}) interface{} {
 	if value == nil {
 		return nil
 	}
@@ -191,13 +188,19 @@ func (c *IdentifiableJsonSqlitePersistence) PerformConvertFromPublic(value inter
 	return result
 }
 
+//  Convert object value from public to internal format.
+//  - value     an object in public format to convert.
+//  Returns converted object in internal format.
+func (c *IdentifiableJsonSqlitePersistence) ConvertFromPublicPartial(value interface{}) interface{} {
+	return c.ConvertFromPublic(value)
+}
+
 //  Updates only few selected fields in a data item.
 //  - correlation_id    (optional) transaction id to trace execution through call chain.
 //  - id                an id of data item to be updated.
 //  - data              a map with fields to be updated.
 //  Returns          callback function that receives updated item or error.
 func (c *IdentifiableJsonSqlitePersistence) UpdatePartially(correlationId string, id interface{}, data *cdata.AnyValueMap) (result interface{}, err error) {
-
 	if data == nil {
 		return nil, nil
 	}
@@ -225,7 +228,7 @@ func (c *IdentifiableJsonSqlitePersistence) UpdatePartially(correlationId string
 		return nil, qResult2.Err()
 	}
 
-	result = c.ConvertToPublic(qResult2)
+	result = c.Overrides.ConvertToPublic(qResult2)
 	c.Logger.Trace(correlationId, "Updated partially in %s with id = %s", c.TableName, id)
 	return result, nil
 

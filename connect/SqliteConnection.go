@@ -1,4 +1,4 @@
-package persistence
+package connect
 
 import (
 	"database/sql"
@@ -8,7 +8,6 @@ import (
 	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	clog "github.com/pip-services3-go/pip-services3-components-go/log"
-	pcon "github.com/pip-services3-go/pip-services3-sqlite-go/connect"
 )
 
 /**
@@ -35,7 +34,7 @@ type SqliteConnection struct {
 	// The logger.
 	Logger *clog.CompositeLogger
 	// The connection resolver.
-	ConnectionResolver *pcon.SqliteConnectionResolver
+	ConnectionResolver *SqliteConnectionResolver
 	// The configuration options.
 	Options *cconf.ConfigParams
 	// The PostgreSQL connection pool object.
@@ -49,7 +48,7 @@ func NewSqliteConnection() *SqliteConnection {
 	c := &SqliteConnection{
 		defaultConfig:      cconf.NewEmptyConfigParams(),
 		Logger:             clog.NewCompositeLogger(),
-		ConnectionResolver: pcon.NewSqliteConnectionResolver(),
+		ConnectionResolver: NewSqliteConnectionResolver(),
 		Options:            cconf.NewEmptyConfigParams(),
 	}
 	return c

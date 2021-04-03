@@ -3,7 +3,7 @@ package build
 import (
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	cbuild "github.com/pip-services3-go/pip-services3-components-go/build"
-	ppersist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
+	persist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
 )
 
 // Creates Sqlite components by their descriptors.
@@ -23,6 +23,6 @@ func NewDefaultSqliteFactory() *DefaultSqliteFactory {
 		Descriptor:                 cref.NewDescriptor("pip-services", "factory", "sqlite", "default", "1.0"),
 		SqliteConnectionDescriptor: cref.NewDescriptor("pip-services", "connection", "sqlite", "*", "1.0"),
 	}
-	c.RegisterType(c.SqliteConnectionDescriptor, ppersist.NewSqliteConnection)
+	c.RegisterType(c.SqliteConnectionDescriptor, persist.NewSqliteConnection)
 	return c
 }

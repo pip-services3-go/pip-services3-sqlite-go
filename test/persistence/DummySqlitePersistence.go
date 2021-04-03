@@ -4,29 +4,26 @@ import (
 	"reflect"
 
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
-	ppersist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
+	persist "github.com/pip-services3-go/pip-services3-sqlite-go/persistence"
 	tf "github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures"
 )
 
 type DummySqlitePersistence struct {
-	ppersist.IdentifiableSqlitePersistence
+	persist.IdentifiableSqlitePersistence
 }
 
 func NewDummySqlitePersistence() *DummySqlitePersistence {
 	proto := reflect.TypeOf(tf.Dummy{})
-	c := &DummySqlitePersistence{
-		IdentifiableSqlitePersistence: *ppersist.NewIdentifiableSqlitePersistence(proto, "dummies"),
-	}
-	c.DefineSchema = c.PerformDefineSchema
+	c := &DummySqlitePersistence{}
+	c.IdentifiableSqlitePersistence = *persist.InheritIdentifiableSqlitePersistence(c, proto, "dummies")
 	return c
 }
 
-func (c *DummySqlitePersistence) PerformDefineSchema() {
+func (c *DummySqlitePersistence) DefineSchema() {
 	c.ClearSchema()
 	// Row name must be in double quotes for properly case!!!
-	c.EnsureSchema("CREATE TABLE \"dummies\" (\"id\" VARCHAR(32) PRIMARY KEY, \"key\" VARCHAR(50), \"content\" TEXT)")
-	c.EnsureIndex("dummies_key", map[string]string{"key": "1"}, map[string]string{"unique": "true"})
-
+	c.EnsureSchema("CREATE TABLE \"" + c.TableName + "\" (\"id\" VARCHAR(32) PRIMARY KEY, \"key\" VARCHAR(50), \"content\" TEXT)")
+	c.EnsureIndex(c.TableName+"_key", map[string]string{"key": "1"}, map[string]string{"unique": "true"})
 }
 
 func (c *DummySqlitePersistence) Create(correlationId string, item tf.Dummy) (result tf.Dummy, err error) {
