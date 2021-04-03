@@ -1,12 +1,11 @@
 module github.com/pip-services3-go/pip-services3-sqlite-go
 
-go 1.14
+go 1.16
 
 require (
-	github.com/jinzhu/copier v0.1.0 // indirect
-	github.com/mattn/go-sqlite3 v1.14.5
-	github.com/pip-services3-go/pip-services3-commons-go v1.0.3
-	github.com/pip-services3-go/pip-services3-components-go v1.0.5
+	github.com/mattn/go-sqlite3 v1.14.6
+	github.com/pip-services3-go/pip-services3-commons-go v1.1.0
+	github.com/pip-services3-go/pip-services3-components-go v1.1.0
 	github.com/pip-services3-go/pip-services3-data-go v1.0.7
-	github.com/stretchr/testify v1.5.1
+	github.com/stretchr/testify v1.7.0
 )

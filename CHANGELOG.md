@@ -1,4 +1,10 @@
-# PostgreSQL components for Pip.Services in Golang Changelog
+# Sqlite components for Pip.Services in Go Changelog
+
+## <a name="1.2.0"></a> 1.2.0 (2021-04-03) 
+
+### Features
+* Moved SqliteConnection to connect package
+* Added ISqlitePersistenceOverride interface to overload virtual methods
 
 ## <a name="1.1.0"></a> 1.1.0 (2021-02-19) 
 

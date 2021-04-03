@@ -1,4 +1,4 @@
-# <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Pip.Services SQLite components for Golang
+# <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> SQLite components for Pip.Services in Go
 
 This component library is a part of the [Pip.Services](https://github.com/pip-services/pip-services) project.
 It contains the following SQLite components: 

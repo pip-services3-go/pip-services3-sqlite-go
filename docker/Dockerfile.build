@@ -1,5 +1,5 @@
 # Start with the golang v1.13 image
-FROM golang:1.13-stretch
+FROM golang:1.16-stretch
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
