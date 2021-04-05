@@ -175,7 +175,7 @@ func (c *IdentifiableSqlitePersistence) Create(correlationId string, item interf
 	}
 	// Assign unique id
 	var newItem interface{}
-	newItem = cmpersist.CloneObject(item)
+	newItem = cmpersist.CloneObject(item, c.Prototype)
 	cmpersist.GenerateObjectId(&newItem)
 
 	return c.SqlitePersistence.Create(correlationId, newItem)
@@ -194,7 +194,7 @@ func (c *IdentifiableSqlitePersistence) Set(correlationId string, item interface
 
 	// Assign unique id
 	var newItem interface{}
-	newItem = cmpersist.CloneObject(item)
+	newItem = cmpersist.CloneObject(item, c.Prototype)
 	cmpersist.GenerateObjectId(&newItem)
 	row := c.Overrides.ConvertFromPublic(item)
 	params := c.GenerateParameters(row)
@@ -241,7 +241,7 @@ func (c *IdentifiableSqlitePersistence) Update(correlationId string, item interf
 		return nil, nil
 	}
 	var newItem interface{}
-	newItem = cmpersist.CloneObject(item)
+	newItem = cmpersist.CloneObject(item, c.Prototype)
 	id := cmpersist.GetObjectId(newItem)
 
 	row := c.Overrides.ConvertFromPublic(newItem)
