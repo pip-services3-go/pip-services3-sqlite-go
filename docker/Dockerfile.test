@@ -1,5 +1,4 @@
-# Start with the golang v1.13 image
-FROM golang:1.13
+FROM golang:1.16
 
 # Setting environment variables for Go
 ENV GO111MODULE=on \
