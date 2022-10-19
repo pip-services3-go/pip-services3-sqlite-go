@@ -8,7 +8,6 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
 
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
@@ -407,23 +406,20 @@ func (c *SqlitePersistence) CreateSchema(correlationId string) (err error) {
 	// Check if table exist to determine weither to auto create objects
 	query := "SELECT * FROM '" + c.TableName + "' LIMIT 1"
 	_, qErr := c.Client.Exec(query)
-	if qErr == nil || strings.Index(qErr.Error(), "no such table") < 0 {
+	if qErr == nil || !strings.Contains(qErr.Error(), "no such table") {
 		return nil
 	}
 
 	c.Logger.Debug(correlationId, "Table "+c.TableName+" does not exist. Creating database objects...")
-	wg := sync.WaitGroup{}
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		for _, dml := range c.schemaStatements {
-			_, err := c.Client.Exec(dml)
-			if err != nil {
-				c.Logger.Error(correlationId, err, "Failed to autocreate database object")
-			}
+
+	for _, dml := range c.schemaStatements {
+		_, err := c.Client.Exec(dml)
+		if err != nil {
+			c.Logger.Error(correlationId, err, "Failed to autocreate database object")
+			return err
 		}
-	}()
-	wg.Wait()
+	}
+
 	return nil
 }
 
@@ -824,24 +820,17 @@ func (c *SqlitePersistence) DeleteByFilter(correlationId string, filter string) 
 		query += " WHERE " + filter
 	}
 
-	qResult, qErr := c.Client.Query(query)
-	defer qResult.Close()
+	qResult, qErr := c.Client.Exec(query)
 
 	if qErr != nil {
 		return qErr
 	}
-	defer qResult.Close()
 
-	var count int64 = 0
-	if !qResult.Next() {
-		return qResult.Err()
-	}
-	var cnt interface{}
-	err = qResult.Scan(&cnt)
+	count, err := qResult.RowsAffected()
 	if err != nil {
-		cnt = 0
+		return err
 	}
-	count = cconv.LongConverter.ToLong(cnt)
+
 	c.Logger.Trace(correlationId, "Deleted %d items from %s", count, c.TableName)
 	return nil
 }

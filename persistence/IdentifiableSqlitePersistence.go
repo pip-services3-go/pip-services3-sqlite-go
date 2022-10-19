@@ -4,7 +4,6 @@ import (
 	"reflect"
 	"strconv"
 
-	cconv "github.com/pip-services3-go/pip-services3-commons-go/convert"
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
 	cmpersist "github.com/pip-services3-go/pip-services3-data-go/persistence"
 )
@@ -358,25 +357,18 @@ func (c *IdentifiableSqlitePersistence) DeleteByIds(correlationId string, ids []
 	params := c.GenerateParameters(ids)
 	query := "DELETE FROM " + c.QuoteIdentifier(c.TableName) + " WHERE \"id\" IN(" + params + ")"
 
-	qResult, qErr := c.Client.Query(query, ids...)
+	qResult, qErr := c.Client.Exec(query, ids...)
+	if qErr != nil {
+		return qErr
+	}
 
 	if qErr != nil {
 		return qErr
 	}
-	defer qResult.Close()
-	if !qResult.Next() {
-		return qResult.Err()
-	}
-	var count int64 = 0
 
-	var cnt interface{}
-	err := qResult.Scan(&cnt)
-	if err != nil {
-		cnt = 0
-	}
-	count = cconv.LongConverter.ToLong(cnt)
+	count, err := qResult.RowsAffected()
 	if count != 0 {
 		c.Logger.Trace(correlationId, "Deleted %d items from %s", count, c.TableName)
 	}
-	return nil
+	return err
 }

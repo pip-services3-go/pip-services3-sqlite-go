@@ -23,18 +23,18 @@ func NewDummyJsonSqlitePersistence() *DummyJsonSqlitePersistence {
 func (c *DummyJsonSqlitePersistence) DefineSchema() {
 	c.ClearSchema()
 	c.EnsureTable("", "")
-	c.EnsureIndex(c.TableName+"_json_key", map[string]string{"(data->'key')": "1"}, map[string]string{"unique": "true"})
+	c.EnsureIndex(c.TableName+"_json_key", map[string]string{"JSON_EXTRACT(data, '$.key')": "1"}, map[string]string{"unique": "true"})
 }
 
 func (c *DummyJsonSqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.DummyPage, err error) {
-	if &filter == nil {
+	if filter == nil {
 		filter = cdata.NewEmptyFilterParams()
 	}
 
 	key := filter.GetAsNullableString("Key")
 	filterObj := ""
 	if key != nil && *key != "" {
-		filterObj += "data->key='" + *key + "'"
+		filterObj += "JSON_EXTRACT(data, '$.key')='" + *key + "'"
 	}
 
 	tempPage, err := c.IdentifiableSqlitePersistence.GetPageByFilter(correlationId,
@@ -51,7 +51,7 @@ func (c *DummyJsonSqlitePersistence) GetPageByFilter(correlationId string, filte
 }
 
 func (c *DummyJsonSqlitePersistence) GetCountByFilter(correlationId string, filter *cdata.FilterParams) (count int64, err error) {
-	if &filter == nil {
+	if filter == nil {
 		filter = cdata.NewEmptyFilterParams()
 	}
 
@@ -59,7 +59,7 @@ func (c *DummyJsonSqlitePersistence) GetCountByFilter(correlationId string, filt
 	filterObj := ""
 
 	if key != nil && *key != "" {
-		filterObj += "data->key='" + *key + "'"
+		filterObj += "JSON_EXTRACT(data, '$.key')='" + *key + "'"
 	}
 
 	return c.IdentifiableSqlitePersistence.GetCountByFilter(correlationId, filterObj)
