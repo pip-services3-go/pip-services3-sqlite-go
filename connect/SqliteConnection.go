@@ -11,7 +11,7 @@ import (
 )
 
 /**
- * PostgreSQL connection using plain driver.
+ * SQLite connection using plain driver.
  *
  * By defining a connection and sharing it through multiple persistence components
  * you can reduce number of used database connections.
@@ -37,9 +37,9 @@ type SqliteConnection struct {
 	ConnectionResolver *SqliteConnectionResolver
 	// The configuration options.
 	Options *cconf.ConfigParams
-	// The PostgreSQL connection pool object.
+	// The SQLite connection pool object.
 	Connection *sql.DB
-	// The PostgreSQL database name.
+	// The SQLite database name.
 	DatabaseName string
 }
 

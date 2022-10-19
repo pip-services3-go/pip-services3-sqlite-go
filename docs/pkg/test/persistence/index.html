@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>test - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.16.15";</script>
+<script src="../../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package test
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "test/persistence"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#DummyJsonSqlitePersistence">type DummyJsonSqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDummyJsonSqlitePersistence">func NewDummyJsonSqlitePersistence() *DummyJsonSqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.Create">func (c *DummyJsonSqlitePersistence) Create(correlationId string, item tf.Dummy) (result tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.DefineSchema">func (c *DummyJsonSqlitePersistence) DefineSchema()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.DeleteById">func (c *DummyJsonSqlitePersistence) DeleteById(correlationId string, id string) (item tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.DeleteByIds">func (c *DummyJsonSqlitePersistence) DeleteByIds(correlationId string, ids []string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.GetCountByFilter">func (c *DummyJsonSqlitePersistence) GetCountByFilter(correlationId string, filter *cdata.FilterParams) (count int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.GetListByIds">func (c *DummyJsonSqlitePersistence) GetListByIds(correlationId string, ids []string) (items []tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.GetOneById">func (c *DummyJsonSqlitePersistence) GetOneById(correlationId string, id string) (item tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.GetPageByFilter">func (c *DummyJsonSqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.DummyPage, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.Set">func (c *DummyJsonSqlitePersistence) Set(correlationId string, item tf.Dummy) (result tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.Update">func (c *DummyJsonSqlitePersistence) Update(correlationId string, item tf.Dummy) (result tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyJsonSqlitePersistence.UpdatePartially">func (c *DummyJsonSqlitePersistence) UpdatePartially(correlationId string, id string, data *cdata.AnyValueMap) (item tf.Dummy, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DummyMapSqlitePersistence">type DummyMapSqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDummyMapSqlitePersistence">func NewDummyMapSqlitePersistence() *DummyMapSqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.Create">func (c *DummyMapSqlitePersistence) Create(correlationId string, item map[string]interface{}) (result map[string]interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.DefineSchema">func (c *DummyMapSqlitePersistence) DefineSchema()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.DeleteById">func (c *DummyMapSqlitePersistence) DeleteById(correlationId string, id string) (item map[string]interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.DeleteByIds">func (c *DummyMapSqlitePersistence) DeleteByIds(correlationId string, ids []string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.GetCountByFilter">func (c *DummyMapSqlitePersistence) GetCountByFilter(correlationId string, filter *cdata.FilterParams) (count int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.GetListByIds">func (c *DummyMapSqlitePersistence) GetListByIds(correlationId string, ids []string) (items []map[string]interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.GetOneById">func (c *DummyMapSqlitePersistence) GetOneById(correlationId string, id string) (item map[string]interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.GetPageByFilter">func (c *DummyMapSqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.MapPage, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.Set">func (c *DummyMapSqlitePersistence) Set(correlationId string, item map[string]interface{}) (result map[string]interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.Update">func (c *DummyMapSqlitePersistence) Update(correlationId string, item map[string]interface{}) (result map[string]interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyMapSqlitePersistence.UpdatePartially">func (c *DummyMapSqlitePersistence) UpdatePartially(correlationId string, id string, data *cdata.AnyValueMap) (item map[string]interface{}, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DummyRefSqlitePersistence">type DummyRefSqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDummyRefSqlitePersistence">func NewDummyRefSqlitePersistence() *DummyRefSqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.Create">func (c *DummyRefSqlitePersistence) Create(correlationId string, item *tf.Dummy) (result *tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.DeleteById">func (c *DummyRefSqlitePersistence) DeleteById(correlationId string, id string) (item *tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.DeleteByIds">func (c *DummyRefSqlitePersistence) DeleteByIds(correlationId string, ids []string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.GetCountByFilter">func (c *DummyRefSqlitePersistence) GetCountByFilter(correlationId string, filter *cdata.FilterParams) (count int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.GetListByIds">func (c *DummyRefSqlitePersistence) GetListByIds(correlationId string, ids []string) (items []*tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.GetOneById">func (c *DummyRefSqlitePersistence) GetOneById(correlationId string, id string) (item *tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.GetPageByFilter">func (c *DummyRefSqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.DummyRefPage, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.Set">func (c *DummyRefSqlitePersistence) Set(correlationId string, item *tf.Dummy) (result *tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.Update">func (c *DummyRefSqlitePersistence) Update(correlationId string, item *tf.Dummy) (result *tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyRefSqlitePersistence.UpdatePartially">func (c *DummyRefSqlitePersistence) UpdatePartially(correlationId string, id string, data *cdata.AnyValueMap) (item *tf.Dummy, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DummySqlitePersistence">type DummySqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDummySqlitePersistence">func NewDummySqlitePersistence() *DummySqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.Create">func (c *DummySqlitePersistence) Create(correlationId string, item tf.Dummy) (result tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.DefineSchema">func (c *DummySqlitePersistence) DefineSchema()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.DeleteById">func (c *DummySqlitePersistence) DeleteById(correlationId string, id string) (item tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.DeleteByIds">func (c *DummySqlitePersistence) DeleteByIds(correlationId string, ids []string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.GetCountByFilter">func (c *DummySqlitePersistence) GetCountByFilter(correlationId string, filter *cdata.FilterParams) (count int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.GetListByIds">func (c *DummySqlitePersistence) GetListByIds(correlationId string, ids []string) (items []tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.GetOneById">func (c *DummySqlitePersistence) GetOneById(correlationId string, id string) (item tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.GetPageByFilter">func (c *DummySqlitePersistence) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page *tf.DummyPage, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.Set">func (c *DummySqlitePersistence) Set(correlationId string, item tf.Dummy) (result tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.Update">func (c *DummySqlitePersistence) Update(correlationId string, item tf.Dummy) (result tf.Dummy, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#DummySqlitePersistence.UpdatePartially">func (c *DummySqlitePersistence) UpdatePartially(correlationId string, id string, data *cdata.AnyValueMap) (item tf.Dummy, err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go">DummyJsonSqlitePersistence.go</a>
+			
+				<a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go">DummyMapSqlitePersistence.go</a>
+			
+				<a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go">DummyRefSqlitePersistence.go</a>
+			
+				<a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go">DummySqlitePersistence.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="DummyJsonSqlitePersistence">type <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=252:337#L1">DummyJsonSqlitePersistence</a>
+				<a class="permalink" href="index.html#DummyJsonSqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type DummyJsonSqlitePersistence struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/">persist</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDummyJsonSqlitePersistence">func <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=339:403#L5">NewDummyJsonSqlitePersistence</a>
+					<a class="permalink" href="index.html#NewDummyJsonSqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDummyJsonSqlitePersistence() *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.Create">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=2043:2152#L58">Create</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) Create(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.DefineSchema">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=608:659#L13">DefineSchema</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.DefineSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) DefineSchema()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.DeleteById">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=3971:4078#L120">DeleteById</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.DeleteById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) DeleteById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.DeleteByIds">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=4246:4342#L129">DeleteByIds</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.DeleteByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) DeleteByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.GetCountByFilter">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=1607:1735#L43">GetCountByFilter</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.GetCountByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) GetCountByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>) (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.GetListByIds">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=2320:2435#L68">GetListByIds</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.GetListByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) GetListByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (items []<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.GetOneById">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=2744:2851#L82">GetOneById</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.GetOneById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) GetOneById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.GetPageByFilter">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=837:999#L19">GetPageByFilter</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.GetPageByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) GetPageByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>, paging *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#PagingParams">PagingParams</a>) (page *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#DummyPage">DummyPage</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.Set">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=3295:3401#L100">Set</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) Set(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.Update">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=3019:3128#L91">Update</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) Update(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyJsonSqlitePersistence.UpdatePartially">func (*DummyJsonSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyJsonSqlitePersistence.go?s=3565:3702#L109">UpdatePartially</a>
+					<a class="permalink" href="index.html#DummyJsonSqlitePersistence.UpdatePartially">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyJsonSqlitePersistence">DummyJsonSqlitePersistence</a>) UpdatePartially(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#AnyValueMap">AnyValueMap</a>) (item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DummyMapSqlitePersistence">type <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=252:332#L1">DummyMapSqlitePersistence</a>
+				<a class="permalink" href="index.html#DummyMapSqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type DummyMapSqlitePersistence struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/">persist</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDummyMapSqlitePersistence">func <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=334:396#L5">NewDummyMapSqlitePersistence</a>
+					<a class="permalink" href="index.html#NewDummyMapSqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDummyMapSqlitePersistence() *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DummyMapSqlitePersistence.Create">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=893:1029#L19">Create</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) Create(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}) (result map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.DefineSchema">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=607:657#L13">DefineSchema</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.DefineSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) DefineSchema()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.DeleteById">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=2952:3072#L82">DeleteById</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.DeleteById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) DeleteById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.DeleteByIds">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=3255:3350#L92">DeleteByIds</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.DeleteByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) DeleteByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.GetCountByFilter">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=4240:4367#L124">GetCountByFilter</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.GetCountByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) GetCountByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>) (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.GetListByIds">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=1210:1338#L28">GetListByIds</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.GetListByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) GetListByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (items []map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.GetOneById">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=1675:1795#L42">GetOneById</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.GetOneById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) GetOneById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.GetPageByFilter">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=3519:3678#L100">GetPageByFilter</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.GetPageByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) GetPageByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>, paging *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#PagingParams">PagingParams</a>) (page *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#MapPage">MapPage</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.Set">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=2296:2429#L62">Set</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) Set(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}) (result map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.Update">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=1978:2114#L52">Update</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) Update(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}) (result map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyMapSqlitePersistence.UpdatePartially">func (*DummyMapSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyMapSqlitePersistence.go?s=2608:2758#L72">UpdatePartially</a>
+					<a class="permalink" href="index.html#DummyMapSqlitePersistence.UpdatePartially">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyMapSqlitePersistence">DummyMapSqlitePersistence</a>) UpdatePartially(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#AnyValueMap">AnyValueMap</a>) (item map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DummyRefSqlitePersistence">type <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=342:422#L3">DummyRefSqlitePersistence</a>
+				<a class="permalink" href="index.html#DummyRefSqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+extends IdentifiableSqlitePersistence&lt;Dummy, string&gt;
+implements IDummyPersistence {
+</p>
+
+			<pre>type DummyRefSqlitePersistence struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/">persist</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDummyRefSqlitePersistence">func <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=424:486#L7">NewDummyRefSqlitePersistence</a>
+					<a class="permalink" href="index.html#NewDummyRefSqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDummyRefSqlitePersistence() *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DummyRefSqlitePersistence.Create">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=677:787#L14">Create</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) Create(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.DeleteById">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=2526:2633#L75">DeleteById</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.DeleteById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) DeleteById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.DeleteByIds">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=2802:2897#L84">DeleteByIds</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.DeleteByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) DeleteByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.GetCountByFilter">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=3868:3995#L118">GetCountByFilter</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.GetCountByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) GetCountByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>) (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.GetListByIds">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=956:1071#L24">GetListByIds</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.GetListByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) GetListByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (items []*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.GetOneById">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=1382:1489#L38">GetOneById</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.GetOneById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) GetOneById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.GetPageByFilter">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=3066:3230#L92">GetPageByFilter</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.GetPageByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) GetPageByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>, paging *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#PagingParams">PagingParams</a>) (page *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#DummyRefPage">DummyRefPage</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.Set">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=1936:2043#L56">Set</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) Set(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.Update">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=1658:1768#L47">Update</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) Update(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyRefSqlitePersistence.UpdatePartially">func (*DummyRefSqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummyRefSqlitePersistence.go?s=2208:2345#L65">UpdatePartially</a>
+					<a class="permalink" href="index.html#DummyRefSqlitePersistence.UpdatePartially">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummyRefSqlitePersistence">DummyRefSqlitePersistence</a>) UpdatePartially(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#AnyValueMap">AnyValueMap</a>) (item *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DummySqlitePersistence">type <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=252:329#L1">DummySqlitePersistence</a>
+				<a class="permalink" href="index.html#DummySqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type DummySqlitePersistence struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/">persist</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/persistence/#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDummySqlitePersistence">func <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=331:387#L5">NewDummySqlitePersistence</a>
+					<a class="permalink" href="index.html#NewDummySqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDummySqlitePersistence() *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="DummySqlitePersistence.Create">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=934:1039#L19">Create</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) Create(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.DefineSchema">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=574:621#L12">DefineSchema</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.DefineSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) DefineSchema()</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.DeleteById">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=2749:2852#L80">DeleteById</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.DeleteById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) DeleteById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.DeleteByIds">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=3020:3112#L89">DeleteByIds</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.DeleteByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) DeleteByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.GetCountByFilter">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=4044:4168#L123">GetCountByFilter</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.GetCountByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) GetCountByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>) (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.GetListByIds">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=1207:1318#L29">GetListByIds</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.GetListByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) GetListByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) (items []<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.GetOneById">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=1627:1730#L43">GetOneById</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.GetOneById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) GetOneById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.GetPageByFilter">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=3281:3439#L97">GetPageByFilter</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.GetPageByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) GetPageByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#FilterParams">FilterParams</a>, paging *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#PagingParams">PagingParams</a>) (page *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#DummyPage">DummyPage</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.Set">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=2170:2272#L61">Set</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) Set(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.Update">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=1898:2003#L52">Update</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) Update(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>) (result <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummySqlitePersistence.UpdatePartially">func (*DummySqlitePersistence) <a href="http://localhost:6060/src/test/persistence/DummySqlitePersistence.go?s=2436:2569#L70">UpdatePartially</a>
+					<a class="permalink" href="index.html#DummySqlitePersistence.UpdatePartially">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#DummySqlitePersistence">DummySqlitePersistence</a>) UpdatePartially(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id <a href="http://localhost:6060/pkg/builtin/#string">string</a>, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#AnyValueMap">AnyValueMap</a>) (item <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/">tf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/test/fixtures/#Dummy">Dummy</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.16.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

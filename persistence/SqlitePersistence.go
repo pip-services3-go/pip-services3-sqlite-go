@@ -28,7 +28,7 @@ type ISqlitePersistenceOverrides interface {
 }
 
 /*
-Abstract persistence component that stores data in PostgreSQL using plain driver.
+Abstract persistence component that stores data in SQLite using plain driver.
 
 This is the most basic persistence component that is only
 able to store data items of any type. Specific CRUD operations
@@ -37,7 +37,7 @@ accessing c._db or c._collection properties.
 
 ### Configuration parameters ###
 
-- collection:                  (optional) PostgreSQL collection name
+- collection:                  (optional) SQLite collection name
 - connection(s):
   - discovery_key:             (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
   - host:                      host name or IP address
@@ -107,13 +107,13 @@ type SqlitePersistence struct {
 	DependencyResolver *cref.DependencyResolver
 	//The logger.
 	Logger *clog.CompositeLogger
-	//The PostgreSQL connection component.
+	//The SQLite connection component.
 	Connection *conn.SqliteConnection
-	//The PostgreSQL connection pool object.
+	//The SQLite connection pool object.
 	Client *sql.DB
-	//The PostgreSQL database name.
+	//The SQLite database name.
 	DatabaseName string
-	//The PostgreSQL table object.
+	//The SQLite table object.
 	TableName   string
 	MaxPageSize int
 }
@@ -323,11 +323,11 @@ func (c *SqlitePersistence) Open(correlationId string) (err error) {
 	}
 
 	if err == nil && c.Connection == nil {
-		err = cerr.NewInvalidStateError(correlationId, "NO_CONNECTION", "PostgreSQL connection is missing")
+		err = cerr.NewInvalidStateError(correlationId, "NO_CONNECTION", "SQLite connection is missing")
 	}
 
 	if err == nil && !c.Connection.IsOpen() {
-		err = cerr.NewConnectionError(correlationId, "CONNECT_FAILED", "PostgreSQL connection is not opened")
+		err = cerr.NewConnectionError(correlationId, "CONNECT_FAILED", "SQLite connection is not opened")
 	}
 
 	c.opened = false

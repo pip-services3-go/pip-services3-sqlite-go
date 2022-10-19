@@ -1,10 +1,11 @@
 # Sqlite components for Pip.Services in Go Changelog
 
-## <a name="1.2.2"></a> 1.2.2 (2022-10-19) 
+## <a name="1.2.3"></a> 1.2.3 (2022-10-19) 
 
 ### Bug Fixes
 * Fixed and optimize queries
-* Fixed factory file name
+* Fixed factory
+* Fixed file names
 
 
 ## <a name="1.2.0"></a> 1.2.0 (2021-04-03) 

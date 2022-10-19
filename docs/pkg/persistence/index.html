@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>persistence - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.16.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package persistence
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "persistence"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#ISqlitePersistenceOverrides">type ISqlitePersistenceOverrides</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#IdentifiableJsonSqlitePersistence">type IdentifiableJsonSqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritIdentifiableJsonSqlitePersistence">func InheritIdentifiableJsonSqlitePersistence(overrides ISqlitePersistenceOverrides, proto reflect.Type, tableName string) *IdentifiableJsonSqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableJsonSqlitePersistence.ConvertFromPublic">func (c *IdentifiableJsonSqlitePersistence) ConvertFromPublic(value interface{}) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableJsonSqlitePersistence.ConvertFromPublicPartial">func (c *IdentifiableJsonSqlitePersistence) ConvertFromPublicPartial(value interface{}) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableJsonSqlitePersistence.ConvertToPublic">func (c *IdentifiableJsonSqlitePersistence) ConvertToPublic(rows *sql.Rows) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableJsonSqlitePersistence.EnsureTable">func (c *IdentifiableJsonSqlitePersistence) EnsureTable(idType string, dataType string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableJsonSqlitePersistence.UpdatePartially">func (c *IdentifiableJsonSqlitePersistence) UpdatePartially(correlationId string, id interface{}, data *cdata.AnyValueMap) (result interface{}, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IdentifiableSqlitePersistence">type IdentifiableSqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritIdentifiableSqlitePersistence">func InheritIdentifiableSqlitePersistence(overrides ISqlitePersistenceOverrides, proto reflect.Type, tableName string) *IdentifiableSqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.Create">func (c *IdentifiableSqlitePersistence) Create(correlationId string, item interface{}) (result interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.DeleteById">func (c *IdentifiableSqlitePersistence) DeleteById(correlationId string, id interface{}) (result interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.DeleteByIds">func (c *IdentifiableSqlitePersistence) DeleteByIds(correlationId string, ids []interface{}) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.GetListByIds">func (c *IdentifiableSqlitePersistence) GetListByIds(correlationId string, ids []interface{}) (items []interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.GetOneById">func (c *IdentifiableSqlitePersistence) GetOneById(correlationId string, id interface{}) (item interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.Set">func (c *IdentifiableSqlitePersistence) Set(correlationId string, item interface{}) (result interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.Update">func (c *IdentifiableSqlitePersistence) Update(correlationId string, item interface{}) (result interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#IdentifiableSqlitePersistence.UpdatePartially">func (c *IdentifiableSqlitePersistence) UpdatePartially(correlationId string, id interface{}, data *cdata.AnyValueMap) (result interface{}, err error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#SqlitePersistence">type SqlitePersistence</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritSqlitePersistence">func InheritSqlitePersistence(overrides ISqlitePersistenceOverrides, proto reflect.Type, tableName string) *SqlitePersistence</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.Clear">func (c *SqlitePersistence) Clear(correlationId string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.ClearSchema">func (c *SqlitePersistence) ClearSchema()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.Close">func (c *SqlitePersistence) Close(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.Configure">func (c *SqlitePersistence) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.ConvertFromPublic">func (c *SqlitePersistence) ConvertFromPublic(value interface{}) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.ConvertFromPublicPartial">func (c *SqlitePersistence) ConvertFromPublicPartial(value interface{}) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.ConvertToPublic">func (c *SqlitePersistence) ConvertToPublic(rows *sql.Rows) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.Create">func (c *SqlitePersistence) Create(correlationId string, item interface{}) (result interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.CreateSchema">func (c *SqlitePersistence) CreateSchema(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.DefineSchema">func (c *SqlitePersistence) DefineSchema()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.DeleteByFilter">func (c *SqlitePersistence) DeleteByFilter(correlationId string, filter string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.DereferenceObject">func (c *SqlitePersistence) DereferenceObject(docPointer reflect.Value) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.EnsureIndex">func (c *SqlitePersistence) EnsureIndex(name string, keys map[string]string, options map[string]string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.EnsureSchema">func (c *SqlitePersistence) EnsureSchema(schemaStatement string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GenerateColumns">func (c *SqlitePersistence) GenerateColumns(values interface{}) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GenerateParameters">func (c *SqlitePersistence) GenerateParameters(values interface{}) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GenerateSetParameters">func (c *SqlitePersistence) GenerateSetParameters(values interface{}) (params string, columns string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GenerateValues">func (c *SqlitePersistence) GenerateValues(columns string, values interface{}) []interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GetCountByFilter">func (c *SqlitePersistence) GetCountByFilter(correlationId string, filter interface{}) (count int64, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GetListByFilter">func (c *SqlitePersistence) GetListByFilter(correlationId string, filter interface{}, sort interface{}, sel interface{}) (items []interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GetOneRandom">func (c *SqlitePersistence) GetOneRandom(correlationId string, filter interface{}) (item interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.GetPageByFilter">func (c *SqlitePersistence) GetPageByFilter(correlationId string, filter interface{}, paging *cdata.PagingParams, sort interface{}, sel interface{}) (page *cdata.DataPage, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.IsOpen">func (c *SqlitePersistence) IsOpen() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.NewObjectByPrototype">func (c *SqlitePersistence) NewObjectByPrototype() reflect.Value</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.Open">func (c *SqlitePersistence) Open(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.QuoteIdentifier">func (c *SqlitePersistence) QuoteIdentifier(value string) string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.SetReferences">func (c *SqlitePersistence) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#SqlitePersistence.UnsetReferences">func (c *SqlitePersistence) UnsetReferences()</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go">IdentifiableJsonSqlitePersistence.go</a>
+			
+				<a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go">IdentifiableSqlitePersistence.go</a>
+			
+				<a href="http://localhost:6060/src/persistence/SqlitePersistence.go">SqlitePersistence.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="ISqlitePersistenceOverrides">type <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=705:922#L13">ISqlitePersistenceOverrides</a>
+				<a class="permalink" href="index.html#ISqlitePersistenceOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ISqlitePersistenceOverrides interface {
+    DefineSchema()
+    ConvertFromPublic(item interface{}) interface{}
+    ConvertToPublic(item *<a href="http://localhost:6060/pkg/database/sql/">sql</a>.<a href="http://localhost:6060/pkg/database/sql/#Rows">Rows</a>) interface{}
+    ConvertFromPublicPartial(item interface{}) interface{}
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IdentifiableJsonSqlitePersistence">type <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=4546:4628#L92">IdentifiableJsonSqlitePersistence</a>
+				<a class="permalink" href="index.html#IdentifiableJsonSqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+### Configuration parameters ###
+</p>
+<p>
+- collection:                  (optional) SQLite collection name
+- connection(s):
+</p>
+<pre>- discovery_key:             (optional) a key to retrieve the connection from [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html</a> IDiscovery]]
+- host:                      host name or IP address
+- port:                      port number (default: 27017)
+- uri:                       resource URI or connection string with all parameters in it
+</pre>
+<p>
+- credential(s):
+</p>
+<pre>- store_key:                 (optional) a key to retrieve the credentials from [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/auth.icredentialstore.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/auth.icredentialstore.html</a> ICredentialStore]]
+- username:                  (optional) user name
+- password:                  (optional) user password
+</pre>
+<p>
+- options:
+</p>
+<pre>- connect_timeout:      (optional) number of milliseconds to wait before timing out when connecting a new client (default: 0)
+- idle_timeout:         (optional) number of milliseconds a client must sit idle in the pool and not be checked out (default: 10000)
+- max_pool_size:        (optional) maximum number of clients the pool should contain (default: 10)
+</pre>
+<p>
+### References ###
+</p>
+<p>
+- \*:logger:\*:\*:1.0           (optional) [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/log.ilogger.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/log.ilogger.html</a> ILogger]] components to pass log messages components to pass log messages
+- \*:discovery:\*:\*:1.0        (optional) [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html</a> IDiscovery]] services
+- \*:credential-store:\*:\*:1.0 (optional) Credential stores to resolve credentials
+</p>
+<p>
+### Example ###
+</p>
+<pre>type MySqlitePersistence struct {
+IdentifiableSqliteJsonPersistence
+</pre>
+<p>
+}
+</p>
+<pre>     func NewMySqlitePersistence() * MySqlitePersistence {
+		 return &amp;MySqlitePersistence{
+			IdentifiableSqliteJsonPersistence: NewIdentifiableSqliteJsonPersistence(&#34;mydata&#34;)
+		}
+
+     func (c*MySqlitePersistence)composeFilter(filter *cdata.FilterParams) interface{} {
+        if filter == nil {
+			filter = NewFilterParams();
+			}
+        let criteria = [];
+        let name = filter.getAsNullableString(&#39;name&#39;);
+        if (name != null)
+            criteria.push({ name: name });
+        return criteria.length &gt; 0 ? { $and: criteria } : null;
+    }
+
+     GetPageByFilter(correlationId: string, filter: FilterParams, paging: PagingParams,
+        callback: (err: any, page: DataPage&lt;MyData&gt;) =&gt; void): void {
+        base.getPageByFilter(correlationId, c.composeFilter(filter), paging, null, null, callback);
+    }
+
+    }
+
+    let persistence = new MySqlitePersistence();
+    persistence.configure(ConfigParams.fromTuples(
+        &#34;host&#34;, &#34;localhost&#34;,
+        &#34;port&#34;, 27017
+    ));
+
+    persitence.open(&#34;123&#34;, (err) =&gt; {
+        ...
+    });
+
+    persistence.create(&#34;123&#34;, { id: &#34;1&#34;, name: &#34;ABC&#34; }, (err, item) =&gt; {
+        persistence.getPageByFilter(
+            &#34;123&#34;,
+            FilterParams.fromTuples(&#34;name&#34;, &#34;ABC&#34;),
+            null,
+            (err, page) =&gt; {
+                console.log(page.data);          // Result: { id: &#34;1&#34;, name: &#34;ABC&#34; }
+
+                persistence.deleteById(&#34;123&#34;, &#34;1&#34;, (err, item) =&gt; {
+                   ...
+                });
+            }
+        )
+    });
+ */
+</pre>
+
+			<pre>type IdentifiableJsonSqlitePersistence struct {
+    <a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritIdentifiableJsonSqlitePersistence">func <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=4808:4965#L99">InheritIdentifiableJsonSqlitePersistence</a>
+					<a class="permalink" href="index.html#InheritIdentifiableJsonSqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritIdentifiableJsonSqlitePersistence(overrides <a href="index.html#ISqlitePersistenceOverrides">ISqlitePersistenceOverrides</a>, proto <a href="http://localhost:6060/pkg/reflect/">reflect</a>.<a href="http://localhost:6060/pkg/reflect/#Type">Type</a>, tableName <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a></pre>
+				<p>
+Creates a new instance of the persistence component.
+- overrides a references to child class that overrides virtual methods
+- tableName    (optional) a table name.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="IdentifiableJsonSqlitePersistence.ConvertFromPublic">func (*IdentifiableJsonSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=6793:6885#L166">ConvertFromPublic</a>
+					<a class="permalink" href="index.html#IdentifiableJsonSqlitePersistence.ConvertFromPublic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a>) ConvertFromPublic(value interface{}) interface{}</pre>
+				<p>
+Convert object value from public to internal format.
+- value     an object in public format to convert.
+Returns converted object in internal format.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableJsonSqlitePersistence.ConvertFromPublicPartial">func (*IdentifiableJsonSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=7268:7367#L184">ConvertFromPublicPartial</a>
+					<a class="permalink" href="index.html#IdentifiableJsonSqlitePersistence.ConvertFromPublicPartial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a>) ConvertFromPublicPartial(value interface{}) interface{}</pre>
+				<p>
+Convert object value from public to internal format.
+- value     an object in public format to convert.
+Returns converted object in internal format.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableJsonSqlitePersistence.ConvertToPublic">func (*IdentifiableJsonSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=5820:5907#L125">ConvertToPublic</a>
+					<a class="permalink" href="index.html#IdentifiableJsonSqlitePersistence.ConvertToPublic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a>) ConvertToPublic(rows *<a href="http://localhost:6060/pkg/database/sql/">sql</a>.<a href="http://localhost:6060/pkg/database/sql/#Rows">Rows</a>) interface{}</pre>
+				<p>
+Converts object value from internal to public format.
+- value     an object in internal format to convert.
+Returns converted object in public format.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableJsonSqlitePersistence.EnsureTable">func (*IdentifiableJsonSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=5300:5387#L108">EnsureTable</a>
+					<a class="permalink" href="index.html#IdentifiableJsonSqlitePersistence.EnsureTable">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a>) EnsureTable(idType <a href="http://localhost:6060/pkg/builtin/#string">string</a>, dataType <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Adds DML statement to automatically create JSON(B) table
+- idType type of the id column (default: TEXT)
+- dataType type of the data column (default: JSONB)
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableJsonSqlitePersistence.UpdatePartially">func (*IdentifiableJsonSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableJsonSqlitePersistence.go?s=7750:7904#L193">UpdatePartially</a>
+					<a class="permalink" href="index.html#IdentifiableJsonSqlitePersistence.UpdatePartially">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableJsonSqlitePersistence">IdentifiableJsonSqlitePersistence</a>) UpdatePartially(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id interface{}, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#AnyValueMap">AnyValueMap</a>) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Updates only few selected fields in a data item.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- id                an id of data item to be updated.
+- data              a map with fields to be updated.
+Returns          callback function that receives updated item or error.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IdentifiableSqlitePersistence">type <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=4091:4158#L85">IdentifiableSqlitePersistence</a>
+				<a class="permalink" href="index.html#IdentifiableSqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Abstract persistence component that stores data in SQLite
+and implements a number of CRUD operations over data items with unique ids.
+The data items must implement IIdentifiable interface.
+</p>
+<pre>*
+</pre>
+<p>
+In basic scenarios child classes shall only override [[getPageByFilter]],
+[[getListByFilter]] or [[deleteByFilter]] operations with specific filter function.
+All other operations can be used out of the box.
+</p>
+<pre>*
+</pre>
+<p>
+In complex scenarios child classes can implement additional operations by
+accessing c._collection and c._model properties.
+</p>
+<p>
+### Configuration parameters ###
+</p>
+<pre>*
+</pre>
+<p>
+- collection:                  (optional) SQLite collection name
+- connection(s):
+</p>
+<pre>- discovery_key:             (optional) a key to retrieve the connection from [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html</a> IDiscovery]]
+- host:                      host name or IP address
+- port:                      port number (default: 27017)
+- uri:                       resource URI or connection string with all parameters in it
+</pre>
+<p>
+- credential(s):
+</p>
+<pre>- store_key:                 (optional) a key to retrieve the credentials from [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/auth.icredentialstore.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/auth.icredentialstore.html</a> ICredentialStore]]
+- username:                  (optional) user name
+- password:                  (optional) user password
+</pre>
+<p>
+- options:
+</p>
+<pre> - connect_timeout:      (optional) number of milliseconds to wait before timing out when connecting a new client (default: 0)
+ - idle_timeout:         (optional) number of milliseconds a client must sit idle in the pool and not be checked out (default: 10000)
+ - max_pool_size:        (optional) maximum number of clients the pool should contain (default: 10)
+*
+</pre>
+<p>
+### References ###
+</p>
+<pre>*
+</pre>
+<p>
+- \*:logger:\*:\*:1.0           (optional) [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/log.ilogger.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/log.ilogger.html</a> ILogger]] components to pass log messages components to pass log messages
+- \*:discovery:\*:\*:1.0        (optional) [[<a href="https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html">https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html</a> IDiscovery]] services
+- \*:credential-store:\*:\*:1.0 (optional) Credential stores to resolve credentials
+</p>
+<pre>*
+</pre>
+<p>
+### Example ###
+</p>
+<pre>*
+   class MySqlitePersistence extends IdentifiableSqlitePersistence&lt;MyData, string&gt; {
+*
+   public constructor() {
+       base(&#34;mydata&#34;, new MyDataSqliteSchema());
+   }
+*
+   private composeFilter(filter: FilterParams): any {
+       filter = filter || new FilterParams();
+       let criteria = [];
+       let name = filter.getAsNullableString(&#39;name&#39;);
+       if (name != null)
+           criteria.push({ name: name });
+       return criteria.length &gt; 0 ? { $and: criteria } : null;
+   }
+*
+   public getPageByFilter(correlationId: string, filter: FilterParams, paging: PagingParams,
+       callback: (err: any, page: DataPage&lt;MyData&gt;) =&gt; void): void {
+       base.getPageByFilter(correlationId, c.composeFilter(filter), paging, null, null, callback);
+   }
+*
+   }
+*
+   let persistence = new MySqlitePersistence();
+   persistence.configure(ConfigParams.fromTuples(
+       &#34;host&#34;, &#34;localhost&#34;,
+       &#34;port&#34;, 27017
+   ));
+*
+   persitence.open(&#34;123&#34;, (err) =&gt; {
+       ...
+   });
+*
+   persistence.create(&#34;123&#34;, { id: &#34;1&#34;, name: &#34;ABC&#34; }, (err, item) =&gt; {
+       persistence.getPageByFilter(
+           &#34;123&#34;,
+           FilterParams.fromTuples(&#34;name&#34;, &#34;ABC&#34;),
+           null,
+           (err, page) =&gt; {
+               console.log(page.data);          // Result: { id: &#34;1&#34;, name: &#34;ABC&#34; }
+*
+               persistence.deleteById(&#34;123&#34;, &#34;1&#34;, (err, item) =&gt; {
+                  ...
+               });
+           }
+       )
+   });
+</pre>
+
+			<pre>type IdentifiableSqlitePersistence struct {
+    *<a href="index.html#SqlitePersistence">SqlitePersistence</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritIdentifiableSqlitePersistence">func <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=4341:4490#L92">InheritIdentifiableSqlitePersistence</a>
+					<a class="permalink" href="index.html#InheritIdentifiableSqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritIdentifiableSqlitePersistence(overrides <a href="index.html#ISqlitePersistenceOverrides">ISqlitePersistenceOverrides</a>, proto <a href="http://localhost:6060/pkg/reflect/">reflect</a>.<a href="http://localhost:6060/pkg/reflect/#Type">Type</a>, tableName <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a></pre>
+				<pre>Creates a new instance of the persistence component.
+</pre>
+<p>
+- overrides a references to child class that overrides virtual methods
+- tableName    (optional) a table name.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.Create">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=6735:6853#L161">Create</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) Create(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Creates a data item.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- item              an item to be created.
+Returns          (optional)  created item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.DeleteById">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=11798:11918#L318">DeleteById</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.DeleteById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) DeleteById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Deleted a data item by it&#39;s unique id.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- id                an id of the item to be deleted
+Returns          (optional)  deleted item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.DeleteByIds">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=12768:12866#L345">DeleteByIds</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.DeleteByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) DeleteByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []interface{}) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+Deletes multiple data items by their unique ids.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- ids               ids of data items to be deleted.
+Returns          (optional)  error or null for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.GetListByIds">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=4950:5076#L106">GetListByIds</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.GetListByIds">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) GetListByIds(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ids []interface{}) (items []interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Gets a list of data items retrieved by given unique ids.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- ids               ids of data items to be retrieved
+Returns          a data list or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.GetOneById">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=5855:5973#L134">GetOneById</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.GetOneById">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) GetOneById(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id interface{}) (item interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Gets a data item by its unique id.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- id                an id of data item to be retrieved.
+Returns           data item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.Set">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=7395:7510#L178">Set</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) Set(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Sets a data item. If the data item exists it updates it,
+otherwise it create a new data item.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- item              a item to be set.
+Returns          (optional)  updated item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.Update">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=8912:9030#L227">Update</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) Update(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Updates a data item.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- item              an item to be updated.
+Returns          (optional)  updated item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="IdentifiableSqlitePersistence.UpdatePartially">func (*IdentifiableSqlitePersistence) <a href="http://localhost:6060/src/persistence/IdentifiableSqlitePersistence.go?s=10416:10566#L274">UpdatePartially</a>
+					<a class="permalink" href="index.html#IdentifiableSqlitePersistence.UpdatePartially">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#IdentifiableSqlitePersistence">IdentifiableSqlitePersistence</a>) UpdatePartially(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, id interface{}, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#AnyValueMap">AnyValueMap</a>) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Updates only few selected fields in a data item.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- id                an id of data item to be updated.
+- data              a map with fields to be updated.
+Returns           updated item or error.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="SqlitePersistence">type <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=3768:4432#L85">SqlitePersistence</a>
+				<a class="permalink" href="index.html#SqlitePersistence">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SqlitePersistence struct {
+<span id="SqlitePersistence.Overrides"></span>    Overrides <a href="index.html#ISqlitePersistenceOverrides">ISqlitePersistenceOverrides</a>
+<span id="SqlitePersistence.Prototype"></span>    Prototype <a href="http://localhost:6060/pkg/reflect/">reflect</a>.<a href="http://localhost:6060/pkg/reflect/#Type">Type</a>
+
+    <span class="comment">//The dependency resolver.</span>
+<span id="SqlitePersistence.DependencyResolver"></span>    DependencyResolver *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#DependencyResolver">DependencyResolver</a>
+    <span class="comment">//The logger.</span>
+<span id="SqlitePersistence.Logger"></span>    Logger *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/">clog</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/#CompositeLogger">CompositeLogger</a>
+    <span class="comment">//The SQLite connection component.</span>
+<span id="SqlitePersistence.Connection"></span>    Connection *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/connect/">conn</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-sqlite-go/connect/#SqliteConnection">SqliteConnection</a>
+    <span class="comment">//The SQLite connection pool object.</span>
+<span id="SqlitePersistence.Client"></span>    Client *<a href="http://localhost:6060/pkg/database/sql/">sql</a>.<a href="http://localhost:6060/pkg/database/sql/#DB">DB</a>
+    <span class="comment">//The SQLite database name.</span>
+<span id="SqlitePersistence.DatabaseName"></span>    DatabaseName <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+    <span class="comment">//The SQLite table object.</span>
+<span id="SqlitePersistence.TableName"></span>    TableName   <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="SqlitePersistence.MaxPageSize"></span>    MaxPageSize <a href="http://localhost:6060/pkg/builtin/#int">int</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritSqlitePersistence">func <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=4612:4737#L114">InheritSqlitePersistence</a>
+					<a class="permalink" href="index.html#InheritSqlitePersistence">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritSqlitePersistence(overrides <a href="index.html#ISqlitePersistenceOverrides">ISqlitePersistenceOverrides</a>, proto <a href="http://localhost:6060/pkg/reflect/">reflect</a>.<a href="http://localhost:6060/pkg/reflect/#Type">Type</a>, tableName <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#SqlitePersistence">SqlitePersistence</a></pre>
+				<p>
+Creates a new instance of the persistence component.
+- overrides a references to child class that overrides virtual methods
+- tableName    (optional) a table name.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="SqlitePersistence.Clear">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=12076:12137#L374">Clear</a>
+					<a class="permalink" href="index.html#SqlitePersistence.Clear">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) Clear(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+Clears component state.
+- correlationId 	(optional) transaction id to trace execution through call chain.
+- Returns 			error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.ClearSchema">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=8030:8071#L233">ClearSchema</a>
+					<a class="permalink" href="index.html#SqlitePersistence.ClearSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) ClearSchema()</pre>
+				<p>
+Clears all auto-created objects
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.Close">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=11510:11577#L351">Close</a>
+					<a class="permalink" href="index.html#SqlitePersistence.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) Close(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Closes component and frees used resources.
+- correlationId 	(optional) transaction id to trace execution through call chain.
+- Returns 			error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.Configure">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=5342:5407#L136">Configure</a>
+					<a class="permalink" href="index.html#SqlitePersistence.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+- config    configuration parameters to be set.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.ConvertFromPublic">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=9221:9297#L271">ConvertFromPublic</a>
+					<a class="permalink" href="index.html#SqlitePersistence.ConvertFromPublic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) ConvertFromPublic(value interface{}) interface{}</pre>
+				<p>
+Convert object value from func (c * SqlitePersistence) to internal format.
+- value     an object in func (c * SqlitePersistence) format to convert.
+Returns converted object in internal format.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.ConvertFromPublicPartial">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=9485:9568#L278">ConvertFromPublicPartial</a>
+					<a class="permalink" href="index.html#SqlitePersistence.ConvertFromPublicPartial">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) ConvertFromPublicPartial(value interface{}) interface{}</pre>
+				<p>
+Converts the given object from the public partial format.
+- value     the object to convert from the public partial format.
+Returns the initial object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.ConvertToPublic">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=8320:8391#L240">ConvertToPublic</a>
+					<a class="permalink" href="index.html#SqlitePersistence.ConvertToPublic">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) ConvertToPublic(rows *<a href="http://localhost:6060/pkg/database/sql/">sql</a>.<a href="http://localhost:6060/pkg/database/sql/#Rows">Rows</a>) interface{}</pre>
+				<p>
+Converts object value from internal to func (c * SqlitePersistence) format.
+- value     an object in internal format to convert.
+Returns converted object in func (c * SqlitePersistence) format.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.Create">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=24106:24212#L774">Create</a>
+					<a class="permalink" href="index.html#SqlitePersistence.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) Create(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, item interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Creates a data item.
+- correlation_id    (optional) transaction id to trace execution through call chain.
+- item              an item to be created.
+- Returns          (optional) callback function that receives created item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.CreateSchema">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=12518:12592#L391">CreateSchema</a>
+					<a class="permalink" href="index.html#SqlitePersistence.CreateSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) CreateSchema(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.DefineSchema">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=7668:7710#L222">DefineSchema</a>
+					<a class="permalink" href="index.html#SqlitePersistence.DefineSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) DefineSchema()</pre>
+				<p>
+Defines database schema for the persistence
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.DeleteByFilter">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=25364:25455#L807">DeleteByFilter</a>
+					<a class="permalink" href="index.html#SqlitePersistence.DeleteByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) DeleteByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Deletes data items that match to a given filter.
+This method shall be called by a func (c * SqlitePersistence) deleteByFilter method from child class that
+receives FilterParams and converts them into a filter function.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- filter            (optional) a filter JSON object.
+- Returns           error or nil for success.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.DereferenceObject">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=26100:26183#L837">DereferenceObject</a>
+					<a class="permalink" href="index.html#SqlitePersistence.DereferenceObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) DereferenceObject(docPointer <a href="http://localhost:6060/pkg/reflect/">reflect</a>.<a href="http://localhost:6060/pkg/reflect/#Value">Value</a>) interface{}</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.EnsureIndex">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=6922:7025#L187">EnsureIndex</a>
+					<a class="permalink" href="index.html#SqlitePersistence.EnsureIndex">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) EnsureIndex(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>, keys map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>, options map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Adds index definition to create it on opening
+- keys index keys (fields)
+- options index options
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.EnsureSchema">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=7854:7918#L228">EnsureSchema</a>
+					<a class="permalink" href="index.html#SqlitePersistence.EnsureSchema">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) EnsureSchema(schemaStatement <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Adds a statement to schema definition
+</p>
+<pre>- schemaStatement a statement to be added to the schema
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GenerateColumns">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=13453:13523#L419">GenerateColumns</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GenerateColumns">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GenerateColumns(values interface{}) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Generates a list of column names to use in SQL statements like: &#34;column1,column2,column3&#34;
+- values an array with column values or a key-value map
+Returns a generated list of column names
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GenerateParameters">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=13989:14062#L439">GenerateParameters</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GenerateParameters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GenerateParameters(values interface{}) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Generates a list of value parameters to use in SQL statements like: &#34;$1,$2,$3&#34;
+- values an array with values or a key-value map
+Returns a generated list of value parameters
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GenerateSetParameters">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=14903:15004#L474">GenerateSetParameters</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GenerateSetParameters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GenerateSetParameters(values interface{}) (params <a href="http://localhost:6060/pkg/builtin/#string">string</a>, columns <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Generates a list of column sets to use in UPDATE statements like: column1=$1,column2=$2
+- values a key-value map with columns and values
+Returns a generated list of column sets
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GenerateValues">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=15669:15761#L498">GenerateValues</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GenerateValues">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GenerateValues(columns <a href="http://localhost:6060/pkg/builtin/#string">string</a>, values interface{}) []interface{}</pre>
+				<p>
+Generates a list of column parameters
+- values a key-value map with columns and values
+Returns a generated list of column values
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GetCountByFilter">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=19726:19837#L631">GetCountByFilter</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GetCountByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GetCountByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter interface{}) (count <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Gets a number of data items retrieved by a given filter.
+This method shall be called by a func (c * SqlitePersistence) getCountByFilter method from child class that
+receives FilterParams and converts them into a filter function.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- filter            (optional) a filter JSON object
+- Returns           data page or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GetListByFilter">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=21093:21246#L671">GetListByFilter</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GetListByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GetListByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter interface{}, sort interface{}, sel interface{}) (items []interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Gets a list of data items retrieved by a given filter and sorted according to sort parameters.
+This method shall be called by a func (c * SqlitePersistence) getListByFilter method from child class that
+receives FilterParams and converts them into a filter function.
+- correlationId    (optional) transaction id to trace execution through call chain.
+- filter           (optional) a filter JSON object
+- paging           (optional) paging parameters
+- sort             (optional) sorting JSON object
+- select           (optional) projection JSON object
+- Returns          data list or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GetOneRandom">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=22518:22630#L716">GetOneRandom</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GetOneRandom">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GetOneRandom(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter interface{}) (item interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Gets a random item from items that match to a given filter.
+This method shall be called by a func (c * SqlitePersistence) getOneRandom method from child class that
+receives FilterParams and converts them into a filter function.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- filter            (optional) a filter JSON object
+- Returns            random item or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.GetPageByFilter">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=17239:17423#L541">GetPageByFilter</a>
+					<a class="permalink" href="index.html#SqlitePersistence.GetPageByFilter">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) GetPageByFilter(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, filter interface{}, paging *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#PagingParams">PagingParams</a>,
+    sort interface{}, sel interface{}) (page *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/">cdata</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/data/#DataPage">DataPage</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Gets a page of data items retrieved by a given filter and sorted according to sort parameters.
+This method shall be called by a func (c * SqlitePersistence) getPageByFilter method from child class that
+receives FilterParams and converts them into a filter function.
+- correlationId     (optional) transaction id to trace execution through call chain.
+- filter            (optional) a filter JSON object
+- paging            (optional) paging parameters
+- sort              (optional) sorting JSON object
+- select            (optional) projection JSON object
+- Returns           receives a data page or error.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.IsOpen">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=9918:9959#L294">IsOpen</a>
+					<a class="permalink" href="index.html#SqlitePersistence.IsOpen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) IsOpen() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Checks if the component is opened.
+Returns true if the component has been opened and false otherwise.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.NewObjectByPrototype">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=25913:25977#L829">NewObjectByPrototype</a>
+					<a class="permalink" href="index.html#SqlitePersistence.NewObjectByPrototype">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) NewObjectByPrototype() <a href="http://localhost:6060/pkg/reflect/">reflect</a>.<a href="http://localhost:6060/pkg/reflect/#Value">Value</a></pre>
+				<p>
+service function for return pointer on new prototype object for unmarshaling
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.Open">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=10147:10213#L301">Open</a>
+					<a class="permalink" href="index.html#SqlitePersistence.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) Open(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Opens the component.
+- correlationId 	(optional) transaction id to trace execution through call chain.
+- Returns 			 error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.QuoteIdentifier">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=9623:9687#L282">QuoteIdentifier</a>
+					<a class="permalink" href="index.html#SqlitePersistence.QuoteIdentifier">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) QuoteIdentifier(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.SetReferences">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=5870:5940#L149">SetReferences</a>
+					<a class="permalink" href="index.html#SqlitePersistence.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+Sets references to dependent components.
+- references 	references to locate the component dependencies.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SqlitePersistence.UnsetReferences">func (*SqlitePersistence) <a href="http://localhost:6060/src/persistence/SqlitePersistence.go?s=6463:6508#L169">UnsetReferences</a>
+					<a class="permalink" href="index.html#SqlitePersistence.UnsetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#SqlitePersistence">SqlitePersistence</a>) UnsetReferences()</pre>
+				<p>
+Unsets (clears) previously set references to dependent components.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.16.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

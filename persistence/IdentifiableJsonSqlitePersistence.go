@@ -10,7 +10,7 @@ import (
 )
 
 ///*
-// Abstract persistence component that stores data in PostgreSQL in JSON or JSONB fields
+// Abstract persistence component that stores data in SQLite in JSON or JSONB fields
 // and implements a number of CRUD operations over data items with unique ids.
 // The data items must implement IIdentifiable interface.
 //
@@ -25,7 +25,7 @@ import (
 
 // ### Configuration parameters ###
 //
-// - collection:                  (optional) PostgreSQL collection name
+// - collection:                  (optional) SQLite collection name
 // - connection(s):
 //   - discovery_key:             (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
 //   - host:                      host name or IP address
